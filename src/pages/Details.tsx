@@ -1,6 +1,10 @@
+import Layout from "../components/Layout"
+
 const Details = () => {
   return (
-    <div>Details</div>
+    <Layout>
+      <div className="h-screen bg-primary-dark">Details</div>
+    </Layout>
   )
 }
 export default Details

@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     extend: {
       backgroundImage: {
@@ -12,6 +12,12 @@ export default {
         "desktop-sidebar": "url('assets/desktop/bg-sidebar.svg')",
         "desktop-footer": "url('assets/desktop/bg-footer.svg')",
         "tablet-header": "url('assets/tablet/bg-header.svg')",
+      },
+      colors: {
+        "primary-dark": "#19202d",
+      },
+      fontFamily: {
+        main: ["Kumbh Sans", "sans-serif"],
       },
     },
   },
