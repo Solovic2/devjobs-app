@@ -6,7 +6,7 @@ import Details from "./pages/Details";
 
 function App() {
   return (
-    <div className=" text-white font-main antialiased ">
+    <div className=" text-black dark:text-white font-main antialiased ">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
