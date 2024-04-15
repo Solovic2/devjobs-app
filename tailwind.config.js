@@ -14,9 +14,9 @@ export default {
         "tablet-header": "url('assets/tablet/bg-header.svg')",
       },
       colors: {
-        "primary-dark": "#121721",
+        "main-dark": "#121721",
         "secondary-dark": "#19202d",
-        "light-gray": "#f4f6f8",
+        "off-white": "#f4f6f8",
         "main-gray": "#9daec2",
         "dark-gray": "#6e8098",
         "main-violet": "#6064e4",

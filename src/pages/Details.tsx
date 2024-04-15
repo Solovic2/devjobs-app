@@ -3,7 +3,7 @@ import Layout from "../components/Layout"
 const Details = () => {
   return (
     <Layout>
-      <div className="h-screen bg-primary-dark">Details</div>
+      <div className="h-screen">Details</div>
     </Layout>
   )
 }
