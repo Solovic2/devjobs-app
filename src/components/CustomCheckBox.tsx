@@ -8,7 +8,7 @@ const CustomCheckBox = () => {
         id="full-time"
       />
       <svg
-        className="absolute w-4 h-4 ml-[1px] hidden peer-checked:block pointer-events-none text-white"
+        className="absolute w-4 h-4 ml-[2px] hidden peer-checked:block pointer-events-none text-white"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"

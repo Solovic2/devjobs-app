@@ -5,23 +5,23 @@ import { FormEventHandler } from "react";
 const SearchBar = ({ handleSubmit }: { handleSubmit: FormEventHandler }) => {
   return (
     <form
-      className="w-full bg-white grid lg:grid-cols-[40%_30%_auto] rounded-md"
+      className="w-full bg-white dark:bg-secondary-dark grid lg:grid-cols-[40%_30%_auto] rounded-md"
       onSubmit={handleSubmit}
     >
-      <div className="border-r-2 pl-6 flex items-center ">
+      <div className="dark:border-main-dark border-r-2 pl-6 flex items-center ">
         <IoSearchSharp className="text-3xl text-main-violet" />
         <input
           type="text"
-          className="w-full px-4 py-6 rounded-l-md"
+          className="w-full px-4 py-6 rounded-l-md dark:bg-secondary-dark"
           placeholder="Filter by title, companies, expertise ..."
           name="title"
         />
       </div>
-      <div className="border-r-2 pl-4 flex items-center">
+      <div className="dark:border-main-dark border-r-2 pl-4 flex items-center">
         <IoLocationSharp className="text-3xl text-main-violet" />
         <input
           type="text"
-          className="w-full px-4 py-6"
+          className="w-full px-4 py-6 dark:bg-secondary-dark"
           placeholder="Filter by location..."
           name="location"
         />

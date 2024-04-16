@@ -10,6 +10,7 @@ import {
   useMemo,
 } from "react";
 import { useSearchParams } from "react-router-dom";
+
 export interface Job {
   id: number;
   company: string;
@@ -92,15 +93,17 @@ const Home = () => {
           <JobCard key={job.id} job={job} />
         ))}
       </ul>
-      {filteredData.length >= offset + 9 && (
-        <button
-          className="flex justify-center mx-auto my-10 text-white px-8 py-3 rounded-md bg-main-violet hover:bg-light-violet "
-          onClick={handleClick}
-        >
-          {" "}
-          Load More
-        </button>
-      )}
+      <div className="pb-10">
+        {filteredData.length >= offset + 9 && (
+          <button
+            className="flex justify-center mx-auto mt-10 text-white px-8 py-3 rounded-md bg-main-violet hover:bg-light-violet "
+            onClick={handleClick}
+          >
+            {" "}
+            Load More
+          </button>
+        )}
+      </div>
     </Layout>
   );
 };
