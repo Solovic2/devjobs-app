@@ -4,7 +4,7 @@ import CustomCheckBox from "./CustomCheckBox";
 const SearchBar = () => {
   return (
     <form className="w-full bg-white grid lg:grid-cols-[40%_30%_auto] rounded-md">
-      <div className="border-r-2 pl-8 flex items-center ">
+      <div className="border-r-2 pl-6 flex items-center ">
         <IoSearchSharp className="text-3xl text-main-violet" />
         <input
           type="text"
