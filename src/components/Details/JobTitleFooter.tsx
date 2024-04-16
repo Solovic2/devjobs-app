@@ -1,4 +1,5 @@
 import React from "react";
+import ApplyButtonComponent from "./ApplyButtonComponent";
 
 const JobTitleFooter = ({ user }: { user: any }) => {
   return (
@@ -8,9 +9,7 @@ const JobTitleFooter = ({ user }: { user: any }) => {
           <h1 className="text-lg font-bold">{user.position}</h1>
           <p className="text-main-gray">{user.company}</p>
         </div>
-        <button className="my-8 w-full md:w-fit bg-main-violet p-3 rounded-lg font-bold">
-          Apply Now
-        </button>
+        <ApplyButtonComponent />
       </div>
     </div>
   );

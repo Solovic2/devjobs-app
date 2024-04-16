@@ -1,4 +1,5 @@
 import React from "react";
+import ApplyButtonComponent from "./ApplyButtonComponent";
 
 const JobTitleDescriptions = ({ user }: { user: any }) => {
   return (
@@ -14,15 +15,13 @@ const JobTitleDescriptions = ({ user }: { user: any }) => {
           <p className="my-5 text-main-violet font-bold">{user.location}</p>
         </div>
         <div className="md:w-[18%] lg:w-fit">
-          <button className="my-8 w-full text-white bg-main-violet p-3 rounded-lg font-bold">
-            Apply Now
-          </button>
+          <ApplyButtonComponent />
         </div>
       </div>
       <p className="text-dark-gray mb-3">{user.description}</p>
       <h1 className="text-[24px] font-bold my-4">Requirements</h1>
       <p className="text-dark-gray">{user.requirements.content}</p>
-      <ul className="list-disc list-inside text-dark-gray">
+      <ul className="list-disc pl-4 text-dark-gray">
         {user.requirements.items.map((item: string, index: number) => {
           return (
             <li
