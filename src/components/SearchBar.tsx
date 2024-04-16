@@ -1,15 +1,20 @@
 import { IoSearchSharp, IoLocationSharp } from "react-icons/io5";
 import CustomCheckBox from "./CustomCheckBox";
+import { FormEventHandler } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ handleSubmit }: { handleSubmit: FormEventHandler }) => {
   return (
-    <form className="w-full bg-white grid lg:grid-cols-[40%_30%_auto] rounded-md">
+    <form
+      className="w-full bg-white grid lg:grid-cols-[40%_30%_auto] rounded-md"
+      onSubmit={handleSubmit}
+    >
       <div className="border-r-2 pl-6 flex items-center ">
         <IoSearchSharp className="text-3xl text-main-violet" />
         <input
           type="text"
           className="w-full px-4 py-6 rounded-l-md"
           placeholder="Filter by title, companies, expertise ..."
+          name="title"
         />
       </div>
       <div className="border-r-2 pl-4 flex items-center">
@@ -18,6 +23,7 @@ const SearchBar = () => {
           type="text"
           className="w-full px-4 py-6"
           placeholder="Filter by location..."
+          name="location"
         />
       </div>
       <div className="flex justify-center items-center gap-10 rounded-r-md">
