@@ -7,6 +7,7 @@ import {
   MouseEventHandler,
   useState,
   FormEvent,
+  useMemo,
 } from "react";
 import { useSearchParams } from "react-router-dom";
 export interface Job {
@@ -32,70 +33,66 @@ export interface Job {
 }
 
 const Home = () => {
-  const [data, setData] = useState<Job[]>(jsonData.slice(0, 9));
+  const [offset, setOffset] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleClick: MouseEventHandler = () => {
-    setData((prev) => jsonData.slice(0, prev.length + 3));
+    setOffset((prev) => prev + 3);
   };
+
   const handleSubmit: FormEventHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.currentTarget));
-    setSearchParams(formData);
-    // position, company, location, contract;
-
-    // const filterData = data.filter((element) => {
-    //   return (
-    //     (searchParams.get("title") &&
-    //       element.position
-    //         .toLowerCase()
-    //         .includes(searchParams.get("title") || "")) ||
-    //     element.company
-    //       .toLowerCase()
-    //       .includes(searchParams.get("title") || "") ||
-    //     (searchParams.get("location") &&
-    //       element.location
-    //         .toLowerCase()
-    //         .includes(searchParams.get("location") || "")) ||
-    //     (searchParams.get("fullTime") &&
-    //       element.location
-    //         .toLowerCase()
-    //         .includes(searchParams.get("fullTime") || ""))
-    //   );
-    // });
-    // console.log(filterData);
-
-    // const filterByLocation = data.filter((element) => {
-    //   if (
-    //     searchParams.get("location") &&
-    //     element.location
-    //       .toLowerCase()
-    //       .includes(searchParams.get("location") || "")
-    //   )
-    //     return element;
-    // });
-
-    // const filterByFullTime = data.filter((element) => {
-    //   if (
-    //     searchParams.get("fullTime") &&
-    //     element.location
-    //       .toLowerCase()
-    //       .includes(searchParams.get("fullTime") || "")
-    //   )
-    //     return element;
-    // });
-
-    // console.log(filterData || filterByLocation || filterByFullTime);
+    const formData = Object.fromEntries(
+      new FormData(e.currentTarget)
+    ) as Record<string, string>;
+    const newSearchParams: Record<string, string> = {};
+    if (formData.title) newSearchParams.title = formData.title;
+    if (formData.location) newSearchParams.location = formData.location;
+    if (formData.fullTime) newSearchParams.fullTime = formData.fullTime;
+    setSearchParams(newSearchParams, { replace: true });
   };
+
+  const data = useMemo<Job[]>(
+    () => jsonData.slice(0, offset + 9),
+    [offset, jsonData]
+  );
+  const filteredData = useMemo(
+    () =>
+      data.filter((element) => {
+        if (searchParams.get("fullTime") && element.contract !== "Full Time") {
+          return false;
+        }
+
+        if (
+          searchParams.get("title") &&
+          ![element.position.toLowerCase(), element.company.toLowerCase()].some(
+            (el) => el.includes(searchParams.get("title")!?.toLowerCase())
+          )
+        ) {
+          return false;
+        }
+        if (
+          searchParams.get("location") &&
+          !element.location
+            .toLowerCase()
+            .includes(searchParams.get("location")!?.toLowerCase())
+        ) {
+          return false;
+        }
+        return true;
+      }),
+    [data, searchParams]
+  );
+
   return (
     <Layout>
       <SearchBar handleSubmit={handleSubmit} />
       <ul className="grid grid-cols-3 gap-6 mt-16">
-        {data.map((job: Job) => (
+        {filteredData.map((job: Job) => (
           <JobCard key={job.id} job={job} />
         ))}
       </ul>
-      {data.length < jsonData.length && (
+      {filteredData.length >= offset + 9 && (
         <button
           className="flex justify-center mx-auto my-10 text-white px-8 py-3 rounded-md bg-main-violet hover:bg-light-violet "
           onClick={handleClick}
