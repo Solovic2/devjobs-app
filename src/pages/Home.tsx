@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/home/SearchBar";
 import jsonData from "../assets/data.json";
-import JobCard from "../components/JobCard";
+import JobCard from "../components/home/JobCard";
 import {
   FormEventHandler,
   MouseEventHandler,

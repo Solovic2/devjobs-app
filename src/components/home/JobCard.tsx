@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Job } from "../pages/Home";
+import { Job } from "../../pages/Home";
 
 const JobCard = ({ job }: { job: Job }) => {
   return (

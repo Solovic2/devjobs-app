@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
-import JobTitleCard from "../components/Details/JobTitleCard";
-import JobTitleContainerBody from "../components/Details/JobTitleContainerBody";
-import JobTitleDescriptions from "../components/Details/JobTitleDescriptions";
-import JobTitleFooter from "../components/Details/JobTitleFooter";
+import JobTitleCard from "../components/details/JobTitleCard";
+import JobTitleContainerBody from "../components/details/JobTitleContainerBody";
+import JobTitleDescriptions from "../components/details/JobTitleDescriptions";
+import JobTitleFooter from "../components/details/JobTitleFooter";
 import Layout from "../components/Layout";
 import jsonData from "../assets/data.json";
 import { Job } from "./Home";
