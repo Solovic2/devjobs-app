@@ -44,31 +44,41 @@ const AddOnsOptions: AddOnsOption[] = [
   },
 ];
 const AddOns = ({ addOnsOption, updateFields }: AddOnsProps) => {
-  const [selectedItems, setselectedItems] = useState([]);
-  const [checkedItems, setCheckedItems] = useState({});
-  const handleChecked = (e, id) => {
-    setCheckedItems({
-      ...checkedItems,
-      [id]: e.target.checked,
-    });
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  useMemo(() => updateFields({ addOnsOption: selectedItems }), [selectedItems]);
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { value, checked } = e.target;
+    const objectParsed: AddOnsOption = JSON.parse(value);
+    if (checked) {
+      setSelectedItems([...selectedItems, objectParsed]);
+    } else {
+      setSelectedItems((selectedItem) =>
+        selectedItem.filter(
+          (element: AddOnsOption) => element.id !== objectParsed.id
+        )
+      );
+    }
   };
 
   return (
     <>
-      <ul>
-        {AddOnsOptions.map((addOnsObject) => (
-          <li key={addOnsObject.id}>
-            <input
-              type="checkbox"
-              value={addOnsObject.id}
-              onChange={(e) => handleChecked(e, addOnsObject.id)}
-            />
+      <p>{JSON.stringify(selectedItems)}</p>
+      {AddOnsOptions.map((addOnsObject) => (
+        <div key={addOnsObject.id}>
+          <input
+            type="checkbox"
+            value={JSON.stringify(addOnsObject)}
+            id={`${addOnsObject.id}-${addOnsObject.title}`}
+            onChange={handleChange}
+          />
+          <label htmlFor={`${addOnsObject.id}-${addOnsObject.title}`}>
             <h2>{addOnsObject.title}</h2>
             <p>{addOnsObject.description}</p>
             <p>{addOnsObject.price}</p>
-          </li>
-        ))}
-      </ul>
+          </label>
+        </div>
+      ))}
     </>
   );
 };

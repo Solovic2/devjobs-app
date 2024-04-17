@@ -1,11 +1,7 @@
-import { AddOnsData } from "./AddOns";
-import { SelectPlanData } from "./SelectPlan";
+import { FormData } from "../../pages/Form";
 
-type SummaryData = { summary: string };
-type SummaryProps = SummaryData & SelectPlanData & AddOnsData;
-
-const Summary = ({ summary }: SummaryProps) => {
-  return <div>Summary</div>;
+const Summary = (formData: FormData) => {
+  return <div>{formData.name}</div>;
 };
 
 export default Summary;
