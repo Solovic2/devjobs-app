@@ -1,21 +1,11 @@
 import { MouseEventHandler, useState } from "react";
-import { CheckboxGroup } from "../../context/CheckboxGroupContext";
-import Checkbox from "./Checkbox";
+import { PlanOption } from "../../pages/Form";
 
-export type SelectPlanData = {
-  planOption: selectPlanOption;
-};
-type SelectPlanProps = SelectPlanData & {
-  updateFields: (fields: Partial<SelectPlanData>) => void;
-};
-export type selectPlanOption = {
-  id: number;
-  img: string;
-  title: string;
-  price: string;
+type SelectPlanProps = {
+  updateFields: (fields: { planOption: PlanOption }) => void;
 };
 
-const selectPlanOptions: selectPlanOption[] = [
+const selectPlanOptions: PlanOption[] = [
   {
     id: 1,
     img: "",
@@ -36,7 +26,7 @@ const selectPlanOptions: selectPlanOption[] = [
   },
 ];
 
-const SelectPlan = ({ planOption, updateFields }: SelectPlanProps) => {
+const SelectPlan = ({ updateFields }: SelectPlanProps) => {
   const [isToggled, setIsToggled] = useState<boolean>(false);
   const handleToggle: MouseEventHandler = () => {
     setIsToggled((prev) => !prev);
@@ -44,7 +34,7 @@ const SelectPlan = ({ planOption, updateFields }: SelectPlanProps) => {
   return (
     <>
       <ul>
-        {selectPlanOptions.map((selectObject: selectPlanOption) => (
+        {selectPlanOptions.map((selectObject: PlanOption) => (
           <li
             key={selectObject.id}
             onClick={(e) => updateFields({ planOption: selectObject })}

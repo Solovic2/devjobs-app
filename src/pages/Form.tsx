@@ -5,12 +5,17 @@ import Summary from "../components/form/Summary";
 import YourInfo from "../components/form/YourInfo";
 import { useMultistepForm } from "../hooks/useMultistepForm";
 import FormStepper from "../components/form/FormStepper";
-
+export type PlanOption = {
+  id: number;
+  img: string;
+  title: string;
+  price: string;
+};
 export interface FormData {
   name: string;
   email: string;
   phone: string;
-  planOption: selectPlanOption;
+  planOption: PlanOption;
   addOnOptions: AddOnsOption[] | undefined;
   summary: string;
 }
