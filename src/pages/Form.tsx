@@ -1,5 +1,5 @@
 import { FormEvent, FormEventHandler, useState } from "react";
-import AddOns, { AddOnsOption } from "../components/form/AddOns";
+import AddOns from "../components/form/AddOns";
 import SelectPlan from "../components/form/SelectPlan";
 import Summary from "../components/form/Summary";
 import YourInfo from "../components/form/YourInfo";
@@ -13,6 +13,14 @@ export type PlanOption = {
   price: string;
 };
 
+export type AddOnsOption = {
+  id: number;
+  isChecked: boolean;
+  title: string;
+  description: string;
+  price: string;
+};
+
 export type FormData = {
   name: string;
   email: string;
@@ -20,7 +28,7 @@ export type FormData = {
   planOption: PlanOption;
   addOnOptions: AddOnsOption[] | undefined;
   summary: string;
-}
+};
 
 const INITIAL_DATA: FormData = {
   name: "",

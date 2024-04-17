@@ -1,19 +1,8 @@
-import { useState } from "react";
+import { ChangeEventHandler, useMemo, useState } from "react";
+import { AddOnsOption } from "../../pages/Form";
 
-export type AddOnsData = {
-  addOnsOption: AddOnsOption[];
-};
-
-type AddOnsProps = AddOnsData & {
-  updateFields: (fields: Partial<AddOnsData>) => void;
-};
-
-export type AddOnsOption = {
-  id: number;
-  isChecked: boolean;
-  title: string;
-  description: string;
-  price: string;
+type AddOnsProps = {
+  updateFields: (fields: { addOnOptions: AddOnsOption[] | undefined }) => void;
 };
 
 const AddOnsOptions: AddOnsOption[] = [
@@ -40,10 +29,11 @@ const AddOnsOptions: AddOnsOption[] = [
   },
 ];
 
-const AddOns = ({ addOnsOption, updateFields }: AddOnsProps) => {
-  const [selectedItems, setSelectedItems] = useState([]);
+const AddOns = ({ updateFields }: AddOnsProps) => {
+  const [selectedItems, setSelectedItems] = useState<AddOnsOption[]>([]);
 
-  useMemo(() => updateFields({ addOnsOption: selectedItems }), [selectedItems]);
+  useMemo(() => updateFields({ addOnOptions: selectedItems }), [selectedItems]);
+
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value, checked } = e.target;
     const objectParsed: AddOnsOption = JSON.parse(value);
