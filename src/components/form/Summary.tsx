@@ -4,8 +4,8 @@ import { FormWrapper } from "./FormWrapper";
 const Summary = (formData: FormData) => {
   let totalPrice =
     formData.planType === "monthly"
-      ? parseInt(formData.planOption?.monthlyPrice!)
-      : parseInt(formData.planOption?.yearlyPrice!);
+      ? parseInt(formData.planOption.monthlyPrice!)
+      : parseInt(formData.planOption.yearlyPrice!);
 
   formData.addOnOptions?.forEach(
     (element) =>
@@ -23,19 +23,16 @@ const Summary = (formData: FormData) => {
         <div className="flex justify-between p-3">
           <div>
             <div>
-              {formData.planOption?.title} ({formData.planType})
+              {formData.planOption.title} ({formData.planType})
             </div>
-            <p
-              className="text-sm border-b w-fit text-main-gray cursor-pointer"
-              // onClick={}
-            >
+            <p className="text-sm border-b w-fit text-main-gray cursor-pointer">
               Change
             </p>
           </div>
           <p>
             {formData.planType === "monthly"
-              ? `$${formData.planOption?.monthlyPrice}/mo`
-              : `$${formData.planOption?.yearlyPrice}/yr`}
+              ? `$${formData.planOption.monthlyPrice}/mo`
+              : `$${formData.planOption.yearlyPrice}/yr`}
           </p>
         </div>
         <hr />
@@ -55,7 +52,7 @@ const Summary = (formData: FormData) => {
       </div>
       <div className="flex justify-between p-3">
         <p className="text-main-gray">
-          Total (per {formData.planType ? "year" : "month"})
+          Total (per {formData.planType ? "month" : "year"})
         </p>
         <p className="text-main-violet font-bold">
           {formData.planType === "monthly"

@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useMemo, useState } from "react";
+import { ChangeEventHandler, useEffect, useState } from "react";
 import { FormWrapper } from "./FormWrapper";
 import { AddOnsOption, AddOnsProps } from "../../types/form.types";
 import { AddOnsOptions } from "../../constants";
@@ -36,12 +36,12 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
         return (
           <div
             key={addOnsObject.id}
-            className={`mt-5 flex gap-5 p-2 w-full  border cursor-pointer rounded-md ${
+            className={`mt-5 flex gap-5 p-4 w-full  border cursor-pointer rounded-md ${
               isChecked && "border-main-violet"
             }`}
           >
             <input
-              className="accent-main-violet w-4"
+              className="accent-main-violet w-5"
               type="checkbox"
               value={JSON.stringify(addOnsObject)}
               id={`${addOnsObject.id}-${addOnsObject.title}`}
@@ -52,12 +52,12 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
               className="w-full flex justify-between items-center "
             >
               <div className="flex flex-col justify-center">
-                <h2 className="text-sm font-bold">{addOnsObject.title}</h2>
-                <p className="mt-1 text-main-gray text-xs">
+                <h2 className=" font-bold">{addOnsObject.title}</h2>
+                <p className="mt-1 text-main-gray text-sm">
                   {addOnsObject.description}
                 </p>
               </div>
-              <p className="text-main-violet text-xs font-bold">
+              <p className="text-main-violet  font-bold">
                 {planType === "monthly"
                   ? `$${addOnsObject.monthlyPrice}/mo`
                   : `$${addOnsObject.yearlyPrice}/yr`}

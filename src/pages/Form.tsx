@@ -6,12 +6,13 @@ import YourInfo from "../components/form/YourInfo";
 import { useMultiStepForm } from "../hooks/useMultiStepForm";
 import FormStepper from "../components/form/FormStepper";
 import { FormData } from "../types/form.types";
+import { planOptions } from "../constants";
 
 const INITIAL_DATA: FormData = {
   name: "",
   email: "",
   phone: "",
-  planOption: undefined,
+  planOption: planOptions[0],
   planType: "monthly",
   addOnOptions: undefined,
   summary: "",
@@ -50,7 +51,7 @@ const Form = () => {
       <FormStepper />
       <form
         onSubmit={handleSubmit}
-        className="h-full flex flex-col items-center justify-between"
+        className="h-full w-full flex flex-col items-center justify-between"
       >
         {step}
         <div

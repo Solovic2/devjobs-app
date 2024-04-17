@@ -19,7 +19,7 @@ export type FormData = {
   name: string;
   email: string;
   phone: string;
-  planOption: PlanOption | undefined;
+  planOption: PlanOption;
   planType: "monthly" | "yearly";
   addOnOptions: AddOnsOption[] | undefined;
   summary: string;
