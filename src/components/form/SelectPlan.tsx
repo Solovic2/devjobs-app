@@ -1,37 +1,48 @@
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useEffect, useMemo, useState } from "react";
 import { PlanOption } from "../../pages/Form";
 import { FormWrapper } from "./FormWrapper";
 
 type SelectPlanProps = {
-  updateFields: (fields: { planOption: PlanOption }) => void;
+  updateFields: (
+    fields: Partial<{
+      planOption: PlanOption;
+      planType: "monthly" | "yearly";
+    }>
+  ) => void;
 };
-
 const selectPlanOptions: PlanOption[] = [
   {
     id: 1,
     img: "/src/assets/form/icon-arcade.svg",
     title: "Arcade",
-    price: "$90/yr",
+    monthlyPrice: "9",
+    yearlyPrice: "90",
   },
   {
     id: 2,
     img: "/src/assets/form/icon-advanced.svg",
     title: "Advanced",
-    price: "$120/yr",
+    monthlyPrice: "12",
+    yearlyPrice: "120",
   },
   {
     id: 3,
     img: "/src/assets/form/icon-pro.svg",
     title: "Pro",
-    price: "$150/yr",
+    monthlyPrice: "15",
+    yearlyPrice: "150",
   },
 ];
-
 const SelectPlan = ({ updateFields }: SelectPlanProps) => {
-  const [isToggled, setIsToggled] = useState<boolean>(false);
+  const [plan, setPlan] = useState<"monthly" | "yearly">("monthly");
+
   const handleToggle: MouseEventHandler = () => {
-    setIsToggled((prev) => !prev);
+    setPlan((prev) => (prev === "monthly" ? "yearly" : "monthly"));
   };
+
+  useEffect(() => {
+    updateFields({ planType: plan });
+  }, [plan]);
 
   return (
     <FormWrapper
@@ -50,8 +61,14 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
             </div>
             <div className="">
               <h2 className="font-bold">{selectObject.title}</h2>
-              <p className="text-main-gray">{selectObject.price}</p>
-              {isToggled && <p className="text-main-gray">2 months free</p>}
+              <p className="text-main-gray">
+                {plan === "monthly"
+                  ? `$${selectObject.monthlyPrice}/mo`
+                  : `$${selectObject.yearlyPrice}/yr`}
+              </p>
+              {plan === "yearly" && (
+                <p className="text-main-gray">2 months free</p>
+              )}
             </div>
           </li>
         ))}
@@ -59,7 +76,7 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
       <div className="mt-7 mb-3 flex justify-center items-center gap-3 font-semibold">
         <p>Monthly</p>
         <button type="button" onClick={handleToggle}>
-          Click Me
+          {plan}
         </button>
         <p>Yearly</p>
       </div>

@@ -10,7 +10,8 @@ export type PlanOption = {
   id: number;
   img: string;
   title: string;
-  price: string;
+  monthlyPrice: string;
+  yearlyPrice: string;
 };
 
 export type AddOnsOption = {
@@ -18,14 +19,16 @@ export type AddOnsOption = {
   isChecked: boolean;
   title: string;
   description: string;
-  price: string;
+  monthlyPrice: string;
+  yearlyPrice: string;
 };
 
 export type FormData = {
   name: string;
   email: string;
   phone: string;
-  planOption: PlanOption;
+  planOption: PlanOption | undefined;
+  planType: "monthly" | "yearly";
   addOnOptions: AddOnsOption[] | undefined;
   summary: string;
 };
@@ -34,12 +37,8 @@ const INITIAL_DATA: FormData = {
   name: "",
   email: "",
   phone: "",
-  planOption: {
-    id: 1,
-    img: "",
-    title: "Arcade",
-    price: "$90/yr",
-  },
+  planOption: undefined,
+  planType: "monthly",
   addOnOptions: undefined,
   summary: "",
 };
@@ -75,15 +74,29 @@ const Form = () => {
   return (
     <div className="w-full h-[100dvh] flex flex-col md:flex-row items-center md:justify-center">
       <FormStepper />
-      <form onSubmit={handleSubmit} className="h-full flex flex-col items-center justify-between">
+      <form
+        onSubmit={handleSubmit}
+        className="h-full flex flex-col items-center justify-between"
+      >
         {step}
-        <div className={isFirstStep ? "w-full p-4 font-semibold bg-white dark:bg-secondary-dark flex justify-end" : "w-full p-4 font-semibold bg-white dark:bg-secondary-dark flex justify-between"}>
+        <div
+          className={
+            isFirstStep
+              ? "w-full p-4 font-semibold bg-white dark:bg-secondary-dark flex justify-end"
+              : "w-full p-4 font-semibold bg-white dark:bg-secondary-dark flex justify-between"
+          }
+        >
           {!isFirstStep && (
             <button type="button" className="text-main-gray" onClick={back}>
               Go Back
             </button>
           )}
-          <button type="submit" className='bg-sky-900 text-white py-2 px-3 rounded'>{isLastStep ? "Confirm" : "Next Step"}</button>
+          <button
+            type="submit"
+            className="bg-sky-900 text-white py-2 px-3 rounded"
+          >
+            {isLastStep ? "Confirm" : "Next Step"}
+          </button>
         </div>
       </form>
     </div>
