@@ -1,38 +1,39 @@
-import { useState } from "react";
-import AddOns from "../components/form/AddOns";
-import SelectPlan from "../components/form/SelectPlan";
+import { FormEvent, FormEventHandler, useState } from "react";
+import AddOns, { AddOnsOption } from "../components/form/AddOns";
+import SelectPlan, { selectPlanOption } from "../components/form/SelectPlan";
 import Summary from "../components/form/Summary";
 import YourInfo from "../components/form/YourInfo";
 import { useMultistepForm } from "../hooks/useMultistepForm";
 import FormStepper from "../components/form/FormStepper";
 
-type FormData = {
-  firstName: string;
-  lastName: string;
-  age: string;
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
+export interface FormData {
+  name: string;
   email: string;
-  password: string;
-};
+  phone: string;
+  planOption: selectPlanOption;
+  addOnOptions: AddOnsOption[] | undefined;
+  summary: string;
+}
 
 const INITIAL_DATA: FormData = {
-  firstName: "",
-  lastName: "",
-  age: "",
-  street: "",
-  city: "",
-  state: "",
-  zip: "",
+  name: "",
   email: "",
-  password: "",
+  phone: "",
+  planOption: {
+    id: 1,
+    img: "",
+    title: "Arcade",
+    price: "$90/yr",
+  },
+  addOnOptions: undefined,
+  summary: "",
 };
 
 const Form = () => {
   const [data, setData] = useState(INITIAL_DATA);
   function updateFields(fields: Partial<FormData>) {
+    console.log(fields);
+
     setData((prev) => {
       return { ...prev, ...fields };
     });
@@ -43,12 +44,21 @@ const Form = () => {
       <YourInfo {...data} updateFields={updateFields} />,
       <SelectPlan {...data} updateFields={updateFields} />,
       <AddOns {...data} updateFields={updateFields} />,
-      <Summary {...data} updateFields={updateFields} />,
+      <Summary {...data} />,
     ]);
 
+  const handleSubmit: FormEventHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (currentStepIndex === steps.length - 1) {
+      // submit
+      console.log(data);
+    } else {
+      next();
+    }
+  };
   return (
     <div>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <FormStepper />
         {step}
         <div>
