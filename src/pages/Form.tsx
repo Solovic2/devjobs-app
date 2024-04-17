@@ -1,6 +1,6 @@
 import { FormEvent, FormEventHandler, useState } from "react";
 import AddOns, { AddOnsOption } from "../components/form/AddOns";
-import SelectPlan, { selectPlanOption } from "../components/form/SelectPlan";
+import SelectPlan from "../components/form/SelectPlan";
 import Summary from "../components/form/Summary";
 import YourInfo from "../components/form/YourInfo";
 import { useMultistepForm } from "../hooks/useMultistepForm";
