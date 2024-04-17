@@ -73,17 +73,17 @@ const Form = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <FormStepper />
+    <div className="w-full h-[100dvh] flex flex-col md:flex-row items-center md:justify-center">
+      <FormStepper />
+      <form onSubmit={handleSubmit} className="h-full flex flex-col items-center justify-between">
         {step}
-        <div>
+        <div className={isFirstStep ? "w-full p-4 font-semibold bg-white dark:bg-secondary-dark flex justify-end" : "w-full p-4 font-semibold bg-white dark:bg-secondary-dark flex justify-between"}>
           {!isFirstStep && (
-            <button type="button" onClick={back}>
+            <button type="button" className="text-main-gray" onClick={back}>
               Go Back
             </button>
           )}
-          <button type="submit">{isLastStep ? "Confirm" : "Next"}</button>
+          <button type="submit" className='bg-sky-900 text-white py-2 px-3 rounded'>{isLastStep ? "Confirm" : "Next Step"}</button>
         </div>
       </form>
     </div>

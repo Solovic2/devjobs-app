@@ -15,7 +15,7 @@ const JobTitleDescriptions = ({ job }: { job: Job }) => {
           <p className="my-5 text-main-violet font-bold">{job.location}</p>
         </div>
         <div className="md:w-[18%] lg:w-fit">
-          <ApplyButtonComponent />
+          <ApplyButtonComponent id={job.id.toString()} />
         </div>
       </div>
       <p className="text-dark-gray mb-3">{job.description}</p>

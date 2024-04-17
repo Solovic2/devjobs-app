@@ -1,5 +1,6 @@
 import { ChangeEventHandler, useMemo, useState } from "react";
 import { AddOnsOption } from "../../pages/Form";
+import { FormWrapper } from "./FormWrapper";
 
 type AddOnsProps = {
   updateFields: (fields: { addOnOptions: AddOnsOption[] | undefined }) => void;
@@ -49,7 +50,10 @@ const AddOns = ({ updateFields }: AddOnsProps) => {
   };
 
   return (
-    <>
+    <FormWrapper
+      title="Pick add-ons"
+      description="Add-ons help enhance your gaming experience"
+    >
       <p>{JSON.stringify(selectedItems)}</p>
       {AddOnsOptions.map((addOnsObject) => (
         <div key={addOnsObject.id}>
@@ -66,7 +70,7 @@ const AddOns = ({ updateFields }: AddOnsProps) => {
           </label>
         </div>
       ))}
-    </>
+    </FormWrapper>
   );
 };
 export default AddOns;

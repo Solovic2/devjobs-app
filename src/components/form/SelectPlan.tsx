@@ -1,5 +1,6 @@
 import { MouseEventHandler, useState } from "react";
 import { PlanOption } from "../../pages/Form";
+import { FormWrapper } from "./FormWrapper";
 
 type SelectPlanProps = {
   updateFields: (fields: { planOption: PlanOption }) => void;
@@ -8,19 +9,19 @@ type SelectPlanProps = {
 const selectPlanOptions: PlanOption[] = [
   {
     id: 1,
-    img: "",
+    img: "/src/assets/form/icon-arcade.svg",
     title: "Arcade",
     price: "$90/yr",
   },
   {
     id: 2,
-    img: "",
+    img: "/src/assets/form/icon-advanced.svg",
     title: "Advanced",
     price: "$120/yr",
   },
   {
     id: 3,
-    img: "",
+    img: "/src/assets/form/icon-pro.svg",
     title: "Pro",
     price: "$150/yr",
   },
@@ -31,19 +32,27 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
   const handleToggle: MouseEventHandler = () => {
     setIsToggled((prev) => !prev);
   };
-  
+
   return (
-    <>
-      <ul>
+    <FormWrapper
+      title="Select your plan"
+      description="You have the option of monthly or yearly billing"
+    >
+      <ul className="mt-5 flex flex-col gap-3">
         {selectPlanOptions.map((selectObject: PlanOption) => (
           <li
+            className="border-2 rounded-md flex items-center gap-4 p-3"
             key={selectObject.id}
             onClick={() => updateFields({ planOption: selectObject })}
           >
-            <img src={selectObject.img} alt={selectObject.title} />
-            <h2>{selectObject.title}</h2>
-            <p>{selectObject.price}</p>
-            {isToggled && <p>2 months free</p>}
+            <div className="">
+              <img src={selectObject.img} alt={selectObject.title} />
+            </div>
+            <div className="">
+              <h2>{selectObject.title}</h2>
+              <p>{selectObject.price}</p>
+              {isToggled && <p>2 months free</p>}
+            </div>
           </li>
         ))}
       </ul>
@@ -54,7 +63,7 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
         </button>
         <p>Yearly</p>
       </div>
-    </>
+    </FormWrapper>
   );
 };
 export default SelectPlan;

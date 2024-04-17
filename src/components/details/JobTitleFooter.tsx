@@ -9,7 +9,7 @@ const JobTitleFooter = ({ job }: { job: Job }) => {
           <h1 className="text-lg font-bold">{job.position}</h1>
           <p className="text-main-gray">{job.company}</p>
         </div>
-        <ApplyButtonComponent />
+        <ApplyButtonComponent id={job.id.toString()} />
       </div>
     </div>
   );

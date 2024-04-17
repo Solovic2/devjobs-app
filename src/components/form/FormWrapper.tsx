@@ -1,26 +1,21 @@
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 
 type FormWrapperProps = {
-  title: string
-  children: ReactNode
-}
+  title: string;
+  description: string;
+  children: ReactNode;
+};
 
-export function FormWrapper({ title, children }: FormWrapperProps) {
+export function FormWrapper({
+  title,
+  description,
+  children,
+}: FormWrapperProps) {
   return (
-    <>
-      <h2 style={{ textAlign: "center", margin: 0, marginBottom: "2rem" }}>
-        {title}
-      </h2>
-      <div
-        style={{
-          display: "grid",
-          gap: "1rem .5rem",
-          justifyContent: "flex-start",
-          gridTemplateColumns: "auto minmax(auto, 400px)",
-        }}
-      >
-        {children}
-      </div>
-    </>
-  )
+    <div className="bg-white dark:bg-secondary-dark w-[90%] p-[5%] rounded-xl">
+      <h2 className="text-2xl font-bold">{title}</h2>
+      <h4 className="mt-2 text-main-gray">{description}</h4>
+      <div className="mt-3">{children}</div>
+    </div>
+  );
 }
