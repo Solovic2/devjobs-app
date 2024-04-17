@@ -1,38 +1,8 @@
 import { MouseEventHandler, useEffect, useMemo, useState } from "react";
-import { PlanOption } from "../../pages/Form";
 import { FormWrapper } from "./FormWrapper";
+import { PlanOption, SelectPlanProps } from "../../types/form.types";
+import { planOptions } from "../../constants";
 
-type SelectPlanProps = {
-  updateFields: (
-    fields: Partial<{
-      planOption: PlanOption;
-      planType: "monthly" | "yearly";
-    }>
-  ) => void;
-};
-const selectPlanOptions: PlanOption[] = [
-  {
-    id: 1,
-    img: "/src/assets/form/icon-arcade.svg",
-    title: "Arcade",
-    monthlyPrice: "9",
-    yearlyPrice: "90",
-  },
-  {
-    id: 2,
-    img: "/src/assets/form/icon-advanced.svg",
-    title: "Advanced",
-    monthlyPrice: "12",
-    yearlyPrice: "120",
-  },
-  {
-    id: 3,
-    img: "/src/assets/form/icon-pro.svg",
-    title: "Pro",
-    monthlyPrice: "15",
-    yearlyPrice: "150",
-  },
-];
 const SelectPlan = ({ updateFields }: SelectPlanProps) => {
   const [plan, setPlan] = useState<"monthly" | "yearly">("monthly");
 
@@ -50,7 +20,7 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
       description="You have the option of monthly or yearly billing"
     >
       <ul className="mt-5 flex flex-col gap-3">
-        {selectPlanOptions.map((selectObject: PlanOption) => (
+        {planOptions.map((selectObject: PlanOption) => (
           <li
             className="border-2 rounded-md flex items-center gap-4 p-3"
             key={selectObject.id}

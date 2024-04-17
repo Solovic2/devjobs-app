@@ -1,14 +1,5 @@
+import { YourInfoProps } from "../../types/form.types";
 import { FormWrapper } from "./FormWrapper";
-
-type YourInfoData = {
-  name: string;
-  email: string;
-  phone: string;
-};
-
-type YourInfoProps = YourInfoData & {
-  updateFields: (fields: Partial<YourInfoData>) => void;
-};
 
 const YourInfo = ({ name, email, phone, updateFields }: YourInfoProps) => {
   return (
@@ -36,8 +27,8 @@ const YourInfo = ({ name, email, phone, updateFields }: YourInfoProps) => {
           Email Address
         </label>
         <input
-        className="border-slate-200 border-2 rounded px-4 py-1"
-        placeholder="eg. stephenking@gmail.com"
+          className="border-slate-200 border-2 rounded px-4 py-1"
+          placeholder="eg. stephenking@gmail.com"
           autoFocus
           required
           type="email"
@@ -51,8 +42,8 @@ const YourInfo = ({ name, email, phone, updateFields }: YourInfoProps) => {
           Number
         </label>
         <input
-        className="border-slate-200 border-2 rounded px-4 py-1"
-        placeholder="eg. +20 111 4277 131"
+          className="border-slate-200 border-2 rounded px-4 py-1"
+          placeholder="eg. +20 111 4277 131"
           autoFocus
           required
           type="phone"

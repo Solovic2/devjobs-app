@@ -5,33 +5,7 @@ import Summary from "../components/form/Summary";
 import YourInfo from "../components/form/YourInfo";
 import { useMultiStepForm } from "../hooks/useMultiStepForm";
 import FormStepper from "../components/form/FormStepper";
-
-export type PlanOption = {
-  id: number;
-  img: string;
-  title: string;
-  monthlyPrice: string;
-  yearlyPrice: string;
-};
-
-export type AddOnsOption = {
-  id: number;
-  isChecked: boolean;
-  title: string;
-  description: string;
-  monthlyPrice: string;
-  yearlyPrice: string;
-};
-
-export type FormData = {
-  name: string;
-  email: string;
-  phone: string;
-  planOption: PlanOption | undefined;
-  planType: "monthly" | "yearly";
-  addOnOptions: AddOnsOption[] | undefined;
-  summary: string;
-};
+import { FormData } from "../types/form.types";
 
 const INITIAL_DATA: FormData = {
   name: "",
@@ -72,7 +46,7 @@ const Form = () => {
   };
 
   return (
-    <div className="w-full h-[100dvh] flex flex-col md:flex-row items-center md:justify-center">
+    <div className="w-full h-[100dvh] flex flex-col md:flex-row items-center md:justify-center ">
       <FormStepper />
       <form
         onSubmit={handleSubmit}

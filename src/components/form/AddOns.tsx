@@ -1,40 +1,8 @@
 import { ChangeEventHandler, useEffect, useMemo, useState } from "react";
-import { AddOnsOption } from "../../pages/Form";
 import { FormWrapper } from "./FormWrapper";
+import { AddOnsOption, AddOnsProps } from "../../types/form.types";
+import { AddOnsOptions } from "../../constants";
 
-type AddOnsProps = { planType: "monthly" | "yearly" } & {
-  updateFields: (
-    fields: Partial<{
-      addOnOptions: AddOnsOption[] | undefined;
-    }>
-  ) => void;
-};
-const AddOnsOptions: AddOnsOption[] = [
-  {
-    id: 0,
-    isChecked: false,
-    title: "Online Service",
-    description: "Access to multiplayer games",
-    monthlyPrice: "1",
-    yearlyPrice: "10",
-  },
-  {
-    id: 1,
-    isChecked: false,
-    title: "Larger Storage",
-    description: "Extra 1TB of cloud save",
-    monthlyPrice: "2",
-    yearlyPrice: "20",
-  },
-  {
-    id: 2,
-    isChecked: false,
-    title: "Customizable Profile",
-    description: "Custom theme on your profile",
-    monthlyPrice: "2",
-    yearlyPrice: "20",
-  },
-];
 const AddOns = ({ planType, updateFields }: AddOnsProps) => {
   const [selectedItems, setSelectedItems] = useState<AddOnsOption[]>([]);
 

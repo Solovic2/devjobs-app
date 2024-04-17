@@ -1,4 +1,4 @@
-import { FormData } from "../../pages/Form";
+import { FormData } from "../../types/form.types";
 import { FormWrapper } from "./FormWrapper";
 
 const Summary = (formData: FormData) => {
