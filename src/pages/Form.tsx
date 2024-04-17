@@ -47,7 +47,7 @@ const Form = () => {
   };
 
   return (
-    <div className="w-full h-[100dvh] lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
+    <div className="w-full h-[100dvh] bg-form-topBar lg:bg-none bg-no-repeat lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
       <FormStepper index={currentStepIndex}/>
       <form
         onSubmit={handleSubmit}
