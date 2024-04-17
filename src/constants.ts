@@ -1,4 +1,4 @@
-import { AddOnsOption, PlanOption } from "./types/form.types";
+import { AddOnsOption, FormSteps, PlanOption } from "./types/form.types";
 
 const planOptions: PlanOption[] = [
   {
@@ -51,4 +51,23 @@ const AddOnsOptions: AddOnsOption[] = [
   },
 ];
 
-export { planOptions, AddOnsOptions };
+const formSteps: FormSteps =  [
+  {
+    index: 0,
+    title: 'YOUR INFO'
+  },
+  {
+    index: 1,
+    title: 'SELECT PLAN'
+  },
+  {
+    index: 2,
+    title: 'ADD-ONS'
+  },
+  {
+    index: 3,
+    title: 'SUMMARY'
+  },
+]
+
+export { planOptions, AddOnsOptions, formSteps };

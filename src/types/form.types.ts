@@ -24,6 +24,12 @@ export type FormData = {
   addOnOptions: AddOnsOption[] | undefined;
   summary: string;
 };
+
+export type FormSteps = {
+  index: number;
+  title: string;
+}[];
+
 // Personal Info
 type YourInfoData = {
   name: string;

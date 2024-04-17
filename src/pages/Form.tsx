@@ -47,11 +47,11 @@ const Form = () => {
   };
 
   return (
-    <div className="w-full h-[100dvh] flex flex-col md:flex-row items-center md:justify-center ">
-      <FormStepper />
+    <div className="w-full h-[100dvh] lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
+      <FormStepper index={currentStepIndex}/>
       <form
         onSubmit={handleSubmit}
-        className="h-full w-full flex flex-col items-center justify-between"
+        className="h-full w-full flex flex-col items-center justify-between lg:basis-2/3"
       >
         {step}
         <div

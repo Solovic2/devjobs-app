@@ -53,9 +53,6 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
       </ul>
       <div className="mt-7 mb-3 flex justify-center items-center gap-3 font-semibold">
         <p>Monthly</p>
-        {/* <button type="button" onClick={handleToggle}>
-          {plan}
-        </button> */}
         <button
           type="button"
           className="relative cursor-pointer"
