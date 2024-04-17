@@ -1,17 +1,19 @@
 import { FormEvent, FormEventHandler, useState } from "react";
 import AddOns, { AddOnsOption } from "../components/form/AddOns";
-import SelectPlan, { selectPlanOption } from "../components/form/SelectPlan";
+import SelectPlan from "../components/form/SelectPlan";
 import Summary from "../components/form/Summary";
 import YourInfo from "../components/form/YourInfo";
-import { useMultistepForm } from "../hooks/useMultistepForm";
+import { useMultiStepForm } from "../hooks/useMultiStepForm";
 import FormStepper from "../components/form/FormStepper";
+
 export type PlanOption = {
   id: number;
   img: string;
   title: string;
   price: string;
 };
-export interface FormData {
+
+export type FormData = {
   name: string;
   email: string;
   phone: string;
@@ -45,7 +47,7 @@ const Form = () => {
   }
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultistepForm([
+    useMultiStepForm([
       <YourInfo {...data} updateFields={updateFields} />,
       <SelectPlan {...data} updateFields={updateFields} />,
       <AddOns {...data} updateFields={updateFields} />,
@@ -61,6 +63,7 @@ const Form = () => {
       next();
     }
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>

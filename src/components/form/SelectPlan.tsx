@@ -31,13 +31,14 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
   const handleToggle: MouseEventHandler = () => {
     setIsToggled((prev) => !prev);
   };
+  
   return (
     <>
       <ul>
         {selectPlanOptions.map((selectObject: PlanOption) => (
           <li
             key={selectObject.id}
-            onClick={(e) => updateFields({ planOption: selectObject })}
+            onClick={() => updateFields({ planOption: selectObject })}
           >
             <img src={selectObject.img} alt={selectObject.title} />
             <h2>{selectObject.title}</h2>
