@@ -1,18 +1,13 @@
-import {
-  ChangeEventHandler,
-  MouseEventHandler,
-  useMemo,
-  useState,
-} from "react";
-import { CheckboxGroup } from "../../context/CheckboxGroupContext";
-import Checkbox from "./Checkbox";
+import { useState } from "react";
 
 export type AddOnsData = {
   addOnsOption: AddOnsOption[];
 };
+
 type AddOnsProps = AddOnsData & {
   updateFields: (fields: Partial<AddOnsData>) => void;
 };
+
 export type AddOnsOption = {
   id: number;
   isChecked: boolean;
@@ -20,6 +15,7 @@ export type AddOnsOption = {
   description: string;
   price: string;
 };
+
 const AddOnsOptions: AddOnsOption[] = [
   {
     id: 0,
@@ -43,6 +39,7 @@ const AddOnsOptions: AddOnsOption[] = [
     price: "+$2/mo",
   },
 ];
+
 const AddOns = ({ addOnsOption, updateFields }: AddOnsProps) => {
   const [selectedItems, setselectedItems] = useState([]);
   const [checkedItems, setCheckedItems] = useState({});
