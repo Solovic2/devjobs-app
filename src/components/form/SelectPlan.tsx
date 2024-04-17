@@ -49,14 +49,14 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
               <img src={selectObject.img} alt={selectObject.title} />
             </div>
             <div className="">
-              <h2>{selectObject.title}</h2>
-              <p>{selectObject.price}</p>
-              {isToggled && <p>2 months free</p>}
+              <h2 className="font-bold">{selectObject.title}</h2>
+              <p className="text-main-gray">{selectObject.price}</p>
+              {isToggled && <p className="text-main-gray">2 months free</p>}
             </div>
           </li>
         ))}
       </ul>
-      <div>
+      <div className="mt-7 mb-3 flex justify-center items-center gap-3 font-semibold">
         <p>Monthly</p>
         <button type="button" onClick={handleToggle}>
           Click Me
