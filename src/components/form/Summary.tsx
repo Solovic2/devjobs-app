@@ -14,6 +14,7 @@ const Summary = (formData: FormData) => {
           ? parseInt(element.monthlyPrice!)
           : parseInt(element.yearlyPrice!))
   );
+
   return (
     <FormWrapper
       title="Finishing up"

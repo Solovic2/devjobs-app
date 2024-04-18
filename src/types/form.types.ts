@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type PlanOption = {
   id: number;
   img: string;
@@ -29,6 +31,12 @@ export type FormSteps = {
   index: number;
   title: string;
 }[];
+
+export type FormWrapperProps = {
+  title: string;
+  description: string;
+  children: ReactNode;
+};
 
 // Personal Info
 type YourInfoData = {

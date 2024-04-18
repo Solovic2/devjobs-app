@@ -1,4 +1,4 @@
-import Layout from "../components/Layout";
+import Layout from "../components/ui/Layout";
 import SearchBar from "../components/home/SearchBar";
 import jsonData from "../assets/data.json";
 import JobCard from "../components/home/JobCard";
@@ -10,28 +10,7 @@ import {
   useMemo,
 } from "react";
 import { useSearchParams } from "react-router-dom";
-
-export interface Job {
-  id: number;
-  company: string;
-  logo: string;
-  logoBackground: string;
-  position: string;
-  postedAt: string;
-  contract: string;
-  location: string;
-  website: string;
-  apply: string;
-  description: string;
-  requirements: {
-    content: string;
-    items: string[];
-  };
-  role: {
-    content: string;
-    items: string[];
-  };
-}
+import { Job } from "../types/staticPages.types";
 
 const Home = () => {
   const [offset, setOffset] = useState(0);

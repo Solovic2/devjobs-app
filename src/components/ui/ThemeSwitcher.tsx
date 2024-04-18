@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { IoMoonSharp, IoSunny } from "react-icons/io5";
-import { ThemeContext } from "./Theme";
+import { ThemeContext } from "../../context/Theme";
 
 const switcherStyle =
   "absolute left-1 top-1 bg-white  w-4 h-4 rounded-full transition";
@@ -30,11 +30,8 @@ const ThemeSwitcher = () => {
 
   return (
     <div className="flex items-center gap-3">
-      <IoMoonSharp  />
-      <button
-        className="relative cursor-pointer"
-        onClick={handleThemeSwitch}
-      >
+      <IoMoonSharp />
+      <button className="relative cursor-pointer" onClick={handleThemeSwitch}>
         <div className="border-[1px] w-10 h-6 rounded-full" />
         <div
           className={

@@ -1,4 +1,9 @@
-import { AddOnsOption, FormSteps, PlanOption } from "./types/form.types";
+import {
+  AddOnsOption,
+  FormData,
+  FormSteps,
+  PlanOption,
+} from "./types/form.types";
 
 const planOptions: PlanOption[] = [
   {
@@ -51,23 +56,33 @@ const AddOnsOptions: AddOnsOption[] = [
   },
 ];
 
-const formSteps: FormSteps =  [
+const formSteps: FormSteps = [
   {
     index: 0,
-    title: 'YOUR INFO'
+    title: "YOUR INFO",
   },
   {
     index: 1,
-    title: 'SELECT PLAN'
+    title: "SELECT PLAN",
   },
   {
     index: 2,
-    title: 'ADD-ONS'
+    title: "ADD-ONS",
   },
   {
     index: 3,
-    title: 'SUMMARY'
+    title: "SUMMARY",
   },
-]
+];
 
-export { planOptions, AddOnsOptions, formSteps };
+const initialData: FormData = {
+  name: "",
+  email: "",
+  phone: "",
+  planOption: planOptions[0],
+  planType: "monthly",
+  addOnOptions: undefined,
+  summary: "",
+};
+
+export { planOptions, AddOnsOptions, formSteps, initialData };

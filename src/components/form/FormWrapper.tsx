@@ -1,10 +1,4 @@
-import { ReactNode } from "react";
-
-type FormWrapperProps = {
-  title: string;
-  description: string;
-  children: ReactNode;
-};
+import { FormWrapperProps } from "../../types/form.types";
 
 export function FormWrapper({
   title,

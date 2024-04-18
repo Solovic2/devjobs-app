@@ -24,6 +24,7 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
     () => updateFields({ addOnOptions: selectedItems }),
     [selectedItems]
   );
+
   return (
     <FormWrapper
       title="Pick add-ons"

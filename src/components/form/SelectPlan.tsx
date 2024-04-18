@@ -4,11 +4,11 @@ import { PlanOption, SelectPlanProps } from "../../types/form.types";
 import { planOptions } from "../../constants";
 
 const SelectPlan = ({ updateFields }: SelectPlanProps) => {
-  const [plan, setPlan] = useState<"monthly" | "yearly">("monthly");
+  const [planType, setPlanType] = useState<"monthly" | "yearly">("monthly");
   const [selectedPlan, setSelectedPlan] = useState<PlanOption>(planOptions[0]);
 
   const handleToggle: MouseEventHandler = () => {
-    setPlan((prev) => (prev === "monthly" ? "yearly" : "monthly"));
+    setPlanType((prev) => (prev === "monthly" ? "yearly" : "monthly"));
   };
 
   const handleClick = (selectObject: PlanOption) => {
@@ -17,8 +17,8 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
   };
 
   useEffect(() => {
-    updateFields({ planType: plan });
-  }, [plan]);
+    updateFields({ planType: planType });
+  }, [planType]);
 
   return (
     <FormWrapper
@@ -40,11 +40,11 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
             <div className="">
               <h2 className="font-bold">{selectObject.title}</h2>
               <p className="text-main-gray">
-                {plan === "monthly"
+                {planType === "monthly"
                   ? `$${selectObject.monthlyPrice}/mo`
                   : `$${selectObject.yearlyPrice}/yr`}
               </p>
-              {plan === "yearly" && (
+              {planType === "yearly" && (
                 <p className="text-main-gray">2 months free</p>
               )}
             </div>
@@ -61,7 +61,7 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
           <div className="border-[1px] w-10 h-6 rounded-full bg-sky-900" />
           <div
             className={`absolute left-1 top-1 bg-white  w-4 h-4 rounded-full transition
-            ${plan === "yearly" && "translate-x-[100%]"}`}
+            ${planType === "yearly" && "translate-x-[100%]"}`}
           ></div>
         </button>
         <p>Yearly</p>
