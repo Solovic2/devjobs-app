@@ -84,7 +84,6 @@ const Home = () => {
             className="flex justify-center mx-auto mt-10 text-white px-8 py-3 rounded-md bg-main-violet hover:bg-light-violet "
             onClick={handleClick}
           >
-            {" "}
             Load More
           </button>
         )}

@@ -3,8 +3,8 @@ import { Job } from "../../types/staticPages.types";
 
 const JobCard = ({ job }: { job: Job }) => {
   return (
-    <li className=" bg-white dark:bg-secondary-dark p-6 mt-6 rounded-md">
-      <NavLink to={`/${job.id}`}>
+    <NavLink to={`/${job.id}`}>
+      <li className=" bg-white dark:bg-secondary-dark p-6 mt-6 rounded-md">
         <div
           className="company-logo -mt-11 h-10 w-10 px-1 rounded-xl flex justify-center items-center"
           style={{ backgroundColor: job.logoBackground }}
@@ -21,8 +21,8 @@ const JobCard = ({ job }: { job: Job }) => {
         <p className="mt-6 text-xs text-main-violet font-bold">
           {job.location}
         </p>
-      </NavLink>
-    </li>
+      </li>
+    </NavLink>
   );
 };
 

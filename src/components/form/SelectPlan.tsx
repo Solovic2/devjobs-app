@@ -1,4 +1,4 @@
-import { MouseEventHandler, useEffect, useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import { FormWrapper } from "./FormWrapper";
 import { PlanOption, SelectPlanProps } from "../../types/form.types";
 import { planOptions } from "../../constants";
@@ -14,11 +14,8 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
   const handleClick = (selectObject: PlanOption) => {
     updateFields({ planOption: selectObject });
     setSelectedPlan(selectObject);
-  };
-
-  useEffect(() => {
     updateFields({ planType: planType });
-  }, [planType]);
+  };
 
   return (
     <FormWrapper
@@ -28,7 +25,7 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
       <ul className="mt-5 flex flex-col lg:flex-row lg:w-full lg:justify-between gap-3 lg:gap-5">
         {planOptions.map((selectObject: PlanOption) => (
           <li
-            className={`border-2 lg:w-1/3 rounded-md flex lg:flex-col items-center lg:items-start gap-4 lg:gap-12 p-3 lg:p-5 cursor-pointer ${
+            className={`border-2 lg:w-1/3 rounded-md flex lg:flex-col items-center lg:items-start gap-4 lg:gap-12 p-3 lg:p-5 select-none cursor-pointer ${
               selectedPlan.title === selectObject.title && "border-main-violet"
             } `}
             key={selectObject.id}

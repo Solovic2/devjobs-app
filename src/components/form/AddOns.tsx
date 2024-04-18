@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { FormWrapper } from "./FormWrapper";
 import { AddOnsOption, AddOnsProps } from "../../types/form.types";
 import { AddOnsOptions } from "../../constants";
@@ -9,8 +9,9 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value, checked } = e.target;
     const objectParsed: AddOnsOption = JSON.parse(value);
+    const updatedItems = [...selectedItems, objectParsed]
     if (checked) {
-      setSelectedItems([...selectedItems, objectParsed]);
+      setSelectedItems(updatedItems);
     } else {
       setSelectedItems((selectedItem) =>
         selectedItem.filter(
@@ -18,12 +19,8 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
         )
       );
     }
+    updateFields({ addOnOptions: updatedItems })
   };
-
-  useEffect(
-    () => updateFields({ addOnOptions: selectedItems }),
-    [selectedItems]
-  );
 
   return (
     <FormWrapper
@@ -37,7 +34,7 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
         return (
           <div
             key={addOnsObject.id}
-            className={`mt-5 flex gap-5 p-4 lg:p-5 w-full  border cursor-pointer rounded-md ${
+            className={`mt-5 flex gap-5 p-4 lg:p-5 w-full  border cursor-pointer rounded-md select-none ${
               isChecked && "border-main-violet"
             }`}
           >

@@ -11,14 +11,14 @@ const SearchBar = ({
   const modalRef = useRef<HTMLDivElement>(null);
 
   const handleClick: MouseEventHandler = (e) => {
-    const { target } = e;
     if (
       modalRef.current &&
-      !modalRef.current.contains(target as HTMLDivElement)
+      !modalRef.current.contains(e.target as HTMLDivElement)
     ) {
       setIsModalOpened(false);
     }
   };
+
   return (
     <form
       className="w-full  bg-white dark:bg-secondary-dark grid md:grid-cols-[30%_30%_auto] lg:grid-cols-[40%_30%_auto] rounded-md"
@@ -28,7 +28,7 @@ const SearchBar = ({
         <IoSearchSharp className="text-3xl text-main-violet" />
         <input
           type="text"
-          className="w-full px-4 py-6 rounded-l-md dark:bg-secondary-dark"
+          className="w-full px-4 py-6 rounded-l-md dark:bg-secondary-dark outline-none"
           placeholder="Filter by title, companies, expertise ..."
           name="title"
         />
@@ -51,7 +51,7 @@ const SearchBar = ({
         <IoLocationSharp className="text-3xl text-main-violet" />
         <input
           type="text"
-          className="w-full px-4 py-6 dark:bg-secondary-dark"
+          className="w-full px-4 py-6 dark:bg-secondary-dark outline-none"
           placeholder="Filter by location..."
           name="location"
         />
@@ -95,7 +95,6 @@ const SearchBar = ({
               <button
                 type="submit"
                 className=" w-full mt-5 bg-main-violet h-fit px-8 py-2 text-white rounded-md"
-                // onClick={handleCloseModal}
               >
                 Search
               </button>

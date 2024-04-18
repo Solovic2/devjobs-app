@@ -15,6 +15,22 @@ const Summary = (formData: FormData) => {
           : parseInt(element.yearlyPrice!))
   );
 
+  // const [totalPrice, setTotalPrice] = useState(0);
+
+  // formData.planType === "monthly"
+  //   ? setTotalPrice(parseInt(formData.planOption.monthlyPrice!))
+  //   : setTotalPrice(parseInt(formData.planOption.yearlyPrice!));
+
+  // const planPrices = (element: number) => {
+  //   formData.planType === "monthly"
+  //     ? parseInt(element.monthlyPrice!)
+  //     : parseInt(element.yearlyPrice!);
+  // };
+
+  // formData.addOnOptions?.forEach((element) =>
+  //   setTotalPrice((prev) => (prev += planPrices(element)))
+  // );
+
   return (
     <FormWrapper
       title="Finishing up"

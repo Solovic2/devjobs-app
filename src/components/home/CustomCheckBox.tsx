@@ -3,7 +3,7 @@ const CustomCheckBox = () => {
     <>
       <input
         type="checkbox"
-        className="relative peer shrink-0 w-5 h-5 rounded-sm appearance-none bg-main-gray checked:bg-main-violet checked:border-0 disabled:border-steel-400 disabled:bg-steel-400"
+        className="relative cursor-pointer peer shrink-0 w-5 h-5 rounded-sm appearance-none bg-main-gray checked:bg-main-violet checked:border-0 disabled:border-steel-400 disabled:bg-steel-400"
         name="fullTime"
         id="full-time"
       />
