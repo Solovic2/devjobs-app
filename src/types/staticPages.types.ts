@@ -1,4 +1,4 @@
-import { Dispatch, FormEventHandler, SetStateAction } from "react";
+import { Dispatch, FormEventHandler } from "react";
 
 export type Job = {
   id: number;
