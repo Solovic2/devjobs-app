@@ -37,12 +37,12 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
         return (
           <div
             key={addOnsObject.id}
-            className={`mt-5 flex gap-5 p-4 w-full  border cursor-pointer rounded-md ${
+            className={`mt-5 flex gap-5 p-4 lg:p-5 w-full  border cursor-pointer rounded-md ${
               isChecked && "border-main-violet"
             }`}
           >
             <input
-              className="accent-main-violet w-5"
+              className="accent-main-violet w-5 cursor-pointer"
               type="checkbox"
               value={JSON.stringify(addOnsObject)}
               id={`${addOnsObject.id}-${addOnsObject.title}`}
@@ -50,7 +50,7 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
             />
             <label
               htmlFor={`${addOnsObject.id}-${addOnsObject.title}`}
-              className="w-full flex justify-between items-center "
+              className="w-full flex justify-between items-center cursor-pointer"
             >
               <div className="flex flex-col justify-center">
                 <h2 className=" font-bold">{addOnsObject.title}</h2>

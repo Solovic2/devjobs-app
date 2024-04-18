@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const Form = () => {
   const [data, setData] = useState(initialData);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultiStepForm([
@@ -45,37 +45,41 @@ const Form = () => {
   useEffect(() => {
     if (isSubmitted) {
       const timeOutId = setTimeout(() => {
-        navigate("/")
-      },3000)
+        navigate("/");
+      }, 3000);
       return () => {
-        clearTimeout(timeOutId)
-      }
+        clearTimeout(timeOutId);
+      };
     }
-  }, [isSubmitted])
-  
+  }, [isSubmitted]);
 
   return (
-    <div className="w-full h-[100dvh] bg-form-topBar lg:bg-none bg-no-repeat lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
+    <div className="w-full max-w-[1200px] lg:bg-white lg:mx-auto h-[100dvh] bg-form-topBar lg:bg-none bg-no-repeat bg-contain lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
       <FormStepper index={currentStepIndex} />
       {isSubmitted ? (
-        <div className="h-full w-full flex flex-col items-center gap-5 bg-white rounded-xl  lg:basis-2/3">
-          <div className=""><img src="/src/assets/form/icon-thank-you.svg" alt="" /></div>
-          <h1>Thank you!</h1>
-          <p>
-            Thanks for confirming your subscription! We have fun using our platform. If you ever need support, please feel free to email us at support@devjobs.com.
+        <div className="flex flex-col items-center gap-5 mx-5 px-4 lg:px-20 py-16 text-center bg-white rounded-xl  lg:basis-2/3">
+          <div className="w-16">
+            <img src="/src/assets/form/icon-thank-you.svg" alt="Thank you!" />
+          </div>
+          <h1 className="text-2xl font-bold">Thank you!</h1>
+          <p className="text-main-gray">
+            Thanks for confirming your subscription! We hope you have fun using
+            our platform. If you ever need support, please feel free to email us
+            at support@devjobs.com.
           </p>
         </div>
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="h-full w-full flex flex-col items-center justify-between lg:basis-2/3"
+          id="form"
+          className="relative w-full lg:px-14 lg:py-8 flex flex-col items-center lg:basis-2/3 text-sky-900"
         >
           {step}
           <div
             className={
               isFirstStep
-                ? "w-full p-4 font-semibold bg-white dark:bg-secondary-dark flex justify-end"
-                : "w-full p-4 font-semibold bg-white dark:bg-secondary-dark flex justify-between"
+                ? "w-full p-4 lg:p-0 lg:px-20 absolute bottom-0 font-semibold bg-white dark:bg-secondary-dark flex justify-end"
+                : "w-full p-4 lg:p-0 lg:px-20 absolute bottom-0 font-semibold bg-white dark:bg-secondary-dark flex justify-between"
             }
           >
             {!isFirstStep && (

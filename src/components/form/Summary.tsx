@@ -20,17 +20,17 @@ const Summary = (formData: FormData) => {
       title="Finishing up"
       description="Double-check everything looks ok before confirming"
     >
-      <div className="bg-off-white">
+      <div className="bg-off-white lg:mt-14">
         <div className="flex justify-between p-3">
           <div>
-            <div>
+            <div className="font-bold">
               {formData.planOption.title} ({formData.planType})
             </div>
             <p className="text-sm border-b w-fit text-main-gray cursor-pointer">
               Change
             </p>
           </div>
-          <p>
+          <p className="font-bold">
             {formData.planType === "monthly"
               ? `$${formData.planOption.monthlyPrice}/mo`
               : `$${formData.planOption.yearlyPrice}/yr`}
@@ -55,7 +55,7 @@ const Summary = (formData: FormData) => {
         <p className="text-main-gray">
           Total (per {formData.planType ? "month" : "year"})
         </p>
-        <p className="text-main-violet font-bold">
+        <p className="text-main-violet font-bold text-xl">
           {formData.planType === "monthly"
             ? `$${totalPrice}/mo`
             : `$${totalPrice}/yr`}

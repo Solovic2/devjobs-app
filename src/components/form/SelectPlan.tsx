@@ -25,10 +25,10 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
       title="Select your plan"
       description="You have the option of monthly or yearly billing"
     >
-      <ul className="mt-5 flex flex-col gap-3">
+      <ul className="mt-5 flex flex-col lg:flex-row lg:w-full lg:justify-between gap-3 lg:gap-5">
         {planOptions.map((selectObject: PlanOption) => (
           <li
-            className={`border-2 rounded-md flex items-center gap-4 p-3 cursor-pointer ${
+            className={`border-2 lg:w-1/3 rounded-md flex lg:flex-col items-center lg:items-start gap-4 lg:gap-12 p-3 lg:p-5 cursor-pointer ${
               selectedPlan.title === selectObject.title && "border-main-violet"
             } `}
             key={selectObject.id}
@@ -51,7 +51,7 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
           </li>
         ))}
       </ul>
-      <div className="mt-7 mb-3 flex justify-center items-center gap-3 font-semibold">
+      <div className="mt-7 lg:mt-12 mb-3 flex justify-center items-center gap-3 font-semibold">
         <p>Monthly</p>
         <button
           type="button"
