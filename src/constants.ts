@@ -8,21 +8,21 @@ import {
 const planOptions: PlanOption[] = [
   {
     id: 1,
-    img: "/src/assets/form/icon-arcade.svg",
+    img: "/assets/form/icon-arcade.svg",
     title: "Arcade",
     monthlyPrice: "9",
     yearlyPrice: "90",
   },
   {
     id: 2,
-    img: "/src/assets/form/icon-advanced.svg",
+    img: "/assets/form/icon-advanced.svg",
     title: "Advanced",
     monthlyPrice: "12",
     yearlyPrice: "120",
   },
   {
     id: 3,
-    img: "/src/assets/form/icon-pro.svg",
+    img: "/assets/form/icon-pro.svg",
     title: "Pro",
     monthlyPrice: "15",
     yearlyPrice: "150",

@@ -7,7 +7,7 @@ const JobTitleCard = ({ job }: { job: Job }) => {
         className="w-[50px] h-10 rounded-2xl md:w-[176px] md:h-full -mt-14 md:mt-0 flex justify-center items-center md:rounded-none md:rounded-tl-[9px] md:rounded-bl-[9px]"
         style={{ backgroundColor: job.logoBackground }}
       >
-        <img src={`./src${job.logo}`} className="w-[60%]" alt={job.company} />
+        <img src={`${job.logo}`} className="w-[60%]" alt={job.company} />
       </div>
       <div className="md:w-[40%] md:pl-7 pt-3 flex flex-col justify-center md:justify-start items-center md:items-start">
         <h1 className="text-2xl pb-2 font-bold">{job.company}</h1>

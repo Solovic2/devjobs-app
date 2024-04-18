@@ -4,7 +4,7 @@ import JobTitleContainerBody from "../components/details/JobTitleContainerBody";
 import JobTitleDescriptions from "../components/details/JobTitleDescriptions";
 import JobTitleFooter from "../components/details/JobTitleFooter";
 import Layout from "../components/ui/Layout";
-import jsonData from "../assets/data.json";
+import jsonData from "../../public/assets/data.json";
 import { Job } from "../types/staticPages.types";
 
 const Details = () => {

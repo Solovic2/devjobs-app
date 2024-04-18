@@ -59,7 +59,7 @@ const Form = () => {
       {isSubmitted ? (
         <div className="flex flex-col items-center gap-5 mx-5 px-4 lg:px-20 py-16 text-center bg-white rounded-xl  lg:basis-2/3">
           <div className="w-16">
-            <img src="/src/assets/form/icon-thank-you.svg" alt="Thank you!" />
+            <img src="/assets/form/icon-thank-you.svg" alt="Thank you!" />
           </div>
           <h1 className="text-2xl font-bold">Thank you!</h1>
           <p className="text-main-gray">

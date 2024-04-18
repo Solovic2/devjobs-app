@@ -37,13 +37,13 @@ const SearchBar = ({
             type="button"
             onClick={() => setIsModalOpened((prev) => !prev)}
           >
-            <img src="/src/assets/mobile/icon-filter.svg" alt="Filter" />
+            <img src="/assets/mobile/icon-filter.svg" alt="Filter" />
           </button>
           <button
             type="submit"
             className="bg-main-violet w-16 h-10  flex justify-center items-center text-white rounded-md cursor-pointer"
           >
-            <img src="/src/assets/mobile/icon-search.svg" alt="Search" />
+            <img src="/assets/mobile/icon-search.svg" alt="Search" />
           </button>
         </div>
       </div>

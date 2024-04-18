@@ -5,13 +5,13 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "mobile-header": "url('assets/mobile/bg-header.svg')",
-        "form-topBar": "url('assets/mobile/bg-sidebar.svg')",
-        "mobile-footer": "url('assets/mobile/bg-footer.svg')",
-        "desktop-header": "url('assets/desktop/bg-header.svg')",
-        "form-sidebar": "url('assets/desktop/bg-sidebar.svg')",
-        "desktop-footer": "url('assets/desktop/bg-footer.svg')",
-        "tablet-header": "url('assets/tablet/bg-header.svg')",
+        "mobile-header": "url('/assets/mobile/bg-header.svg')",
+        "form-topBar": "url('/assets/mobile/bg-sidebar.svg')",
+        "mobile-footer": "url('/assets/mobile/bg-footer.svg')",
+        "desktop-header": "url('/assets/desktop/bg-header.svg')",
+        "form-sidebar": "url('/assets/desktop/bg-sidebar.svg')",
+        "desktop-footer": "url('/assets/desktop/bg-footer.svg')",
+        "tablet-header": "url('/assets/tablet/bg-header.svg')",
       },
       colors: {
         "main-dark": "#121721",

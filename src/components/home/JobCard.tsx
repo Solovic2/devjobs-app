@@ -9,7 +9,7 @@ const JobCard = ({ job }: { job: Job }) => {
           className="company-logo -mt-11 h-10 w-10 px-1 rounded-xl flex justify-center items-center"
           style={{ backgroundColor: job.logoBackground }}
         >
-          <img src={`./src${job.logo}`} alt={job.company} />
+          <img src={`${job.logo}`} alt={job.company} />
         </div>
         <div className="flex items-center gap-2 text-sm text-main-gray mt-3 my-1">
           <p>{job.postedAt}</p>
