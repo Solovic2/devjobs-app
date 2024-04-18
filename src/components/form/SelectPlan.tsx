@@ -1,7 +1,15 @@
 import { MouseEventHandler, useState } from "react";
 import { FormWrapper } from "./FormWrapper";
-import { PlanOption, SelectPlanProps } from "../../types/form.types";
+import { PlanOption } from "../../types/form.types";
 import { planOptions } from "../../constants";
+
+type Plan = {
+  planOption: PlanOption;
+  planType: "monthly" | "yearly";
+};
+export type SelectPlanProps = {
+  updateFields: (fields: Partial<Plan>) => void;
+};
 
 const SelectPlan = ({ updateFields }: SelectPlanProps) => {
   const [planType, setPlanType] = useState<"monthly" | "yearly">("monthly");

@@ -1,7 +1,12 @@
 import { IoSearchSharp, IoLocationSharp } from "react-icons/io5";
 import CustomCheckBox from "./CustomCheckBox";
-import { MouseEventHandler, useRef } from "react";
-import { SearchProps } from "../../types/staticPages.types";
+import { Dispatch, FormEventHandler, MouseEventHandler, useRef } from "react";
+
+export type SearchProps = {
+  handleSubmit: FormEventHandler;
+  isModalOpened: boolean;
+  setIsModalOpened: Dispatch<React.SetStateAction<boolean>>;
+};
 
 const SearchBar = ({
   handleSubmit,

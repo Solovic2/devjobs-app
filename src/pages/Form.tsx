@@ -14,18 +14,26 @@ const Form = () => {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultiStepForm([
-      <YourInfo
-        name={data.name}
-        email={data.email}
-        phone={data.phone}
-        updateFields={updateFields}
-      />,
-      <SelectPlan updateFields={updateFields} />,
-      <AddOns planType={data.planType} updateFields={updateFields} />,
-      <Summary {...data} />,
-    ]);
+  const {
+    steps,
+    currentStepIndex,
+    step,
+    isFirstStep,
+    isLastStep,
+    back,
+    next,
+    goTo,
+  } = useMultiStepForm([
+    <YourInfo
+      name={data.name}
+      email={data.email}
+      phone={data.phone}
+      updateFields={updateFields}
+    />,
+    <SelectPlan updateFields={updateFields} />,
+    <AddOns planType={data.planType} updateFields={updateFields} />,
+    <Summary {...data} />,
+  ]);
 
   function updateFields(fields: Partial<FormData>) {
     setData((prev) => {
@@ -54,10 +62,10 @@ const Form = () => {
   }, [isSubmitted]);
 
   return (
-    <div className="w-full max-w-[1200px] lg:bg-white lg:mx-auto h-[100dvh] bg-form-topBar lg:bg-none bg-no-repeat bg-contain lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
-      <FormStepper index={currentStepIndex} />
+    <div className="w-full max-w-[1200px] lg:bg-white lg:dark:bg-secondary-dark lg:mx-auto h-[100dvh] bg-form-topBar lg:bg-none bg-no-repeat bg-contain lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
+      <FormStepper goTo={goTo} index={currentStepIndex} />
       {isSubmitted ? (
-        <div className="flex flex-col items-center gap-5 mx-5 px-4 lg:px-20 py-16 text-center bg-white rounded-xl  lg:basis-2/3">
+        <div className="flex flex-col items-center gap-5 mx-5 px-4 lg:px-20 py-16 text-center bg-white  dark:bg-secondary-dark rounded-xl  lg:basis-2/3">
           <div className="w-16">
             <img src="/assets/form/icon-thank-you.svg" alt="Thank you!" />
           </div>
@@ -72,15 +80,13 @@ const Form = () => {
         <form
           onSubmit={handleSubmit}
           id="form"
-          className="relative w-full lg:px-14 lg:py-8 flex flex-col items-center lg:basis-2/3 text-sky-900"
+          className="relative w-full lg:px-14 lg:py-8 flex flex-col items-center lg:basis-2/3 text-sky-900 dark:text-white"
         >
           {step}
           <div
-            className={
-              isFirstStep
-                ? "w-full p-4 lg:p-0 lg:px-20 absolute bottom-0 font-semibold bg-white dark:bg-secondary-dark flex justify-end"
-                : "w-full p-4 lg:p-0 lg:px-20 absolute bottom-0 font-semibold bg-white dark:bg-secondary-dark flex justify-between"
-            }
+            className={`w-full p-4 lg:p-0 lg:px-20 absolute bottom-0 font-semibold bg-white dark:bg-secondary-dark flex ${
+              isFirstStep ? "justify-end" : "justify-between"
+            }`}
           >
             {!isFirstStep && (
               <button type="button" className="text-main-gray" onClick={back}>
@@ -89,7 +95,7 @@ const Form = () => {
             )}
             <button
               type="submit"
-              className="bg-sky-900 text-white py-2 px-3 rounded"
+              className="bg-sky-900 dark:bg-white text-white dark:text-main-dark py-2 px-3 rounded"
             >
               {isLastStep ? "Confirm" : "Next Step"}
             </button>

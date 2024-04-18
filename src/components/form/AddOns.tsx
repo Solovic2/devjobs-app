@@ -1,7 +1,17 @@
 import { ChangeEventHandler, useState } from "react";
 import { FormWrapper } from "./FormWrapper";
-import { AddOnsOption, AddOnsProps } from "../../types/form.types";
+import { AddOnsOption } from "../../types/form.types";
 import { AddOnsOptions } from "../../constants";
+
+type AddOnOption = {
+  addOnOptions: AddOnsOption[] | undefined;
+};
+type PlanType = {
+  planType: "monthly" | "yearly";
+};
+export type AddOnsProps = PlanType & {
+  updateFields: (fields: Partial<AddOnOption>) => void;
+};
 
 const AddOns = ({ planType, updateFields }: AddOnsProps) => {
   const [selectedItems, setSelectedItems] = useState<AddOnsOption[]>([]);
@@ -9,7 +19,7 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value, checked } = e.target;
     const objectParsed: AddOnsOption = JSON.parse(value);
-    const updatedItems = [...selectedItems, objectParsed]
+    const updatedItems = [...selectedItems, objectParsed];
     if (checked) {
       setSelectedItems(updatedItems);
     } else {
@@ -19,7 +29,7 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
         )
       );
     }
-    updateFields({ addOnOptions: updatedItems })
+    updateFields({ addOnOptions: updatedItems });
   };
 
   return (

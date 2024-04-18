@@ -1,50 +1,40 @@
-import { FormData } from "../../types/form.types";
+import { useMemo, useState } from "react";
+import { AddOnsOption, FormData } from "../../types/form.types";
 import { FormWrapper } from "./FormWrapper";
 
 const Summary = (formData: FormData) => {
-  let totalPrice =
-    formData.planType === "monthly"
-      ? parseInt(formData.planOption.monthlyPrice!)
-      : parseInt(formData.planOption.yearlyPrice!);
-
-  formData.addOnOptions?.forEach(
-    (element) =>
-      (totalPrice +=
-        formData.planType === "monthly"
-          ? parseInt(element.monthlyPrice!)
-          : parseInt(element.yearlyPrice!))
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const planPrices = (element: AddOnsOption): number => {
+    return formData.planType === "monthly"
+      ? parseInt(element.monthlyPrice!)
+      : parseInt(element.yearlyPrice!);
+  };
+  useMemo(
+    () =>
+      formData.planType === "monthly"
+        ? setTotalPrice(parseInt(formData.planOption.monthlyPrice!))
+        : setTotalPrice(parseInt(formData.planOption.yearlyPrice!)),
+    [formData.planType]
   );
-
-  // const [totalPrice, setTotalPrice] = useState(0);
-
-  // formData.planType === "monthly"
-  //   ? setTotalPrice(parseInt(formData.planOption.monthlyPrice!))
-  //   : setTotalPrice(parseInt(formData.planOption.yearlyPrice!));
-
-  // const planPrices = (element: number) => {
-  //   formData.planType === "monthly"
-  //     ? parseInt(element.monthlyPrice!)
-  //     : parseInt(element.yearlyPrice!);
-  // };
-
-  // formData.addOnOptions?.forEach((element) =>
-  //   setTotalPrice((prev) => (prev += planPrices(element)))
-  // );
+  useMemo(
+    () =>
+      formData.addOnOptions?.forEach((element) =>
+        setTotalPrice((prev: number) => (prev += planPrices(element)))
+      ),
+    [formData.addOnOptions?.length]
+  );
 
   return (
     <FormWrapper
       title="Finishing up"
       description="Double-check everything looks ok before confirming"
     >
-      <div className="bg-off-white lg:mt-14">
+      <div className="bg-off-white dark:bg-main-dark lg:mt-14">
         <div className="flex justify-between p-3">
           <div>
             <div className="font-bold">
               {formData.planOption.title} ({formData.planType})
             </div>
-            <p className="text-sm border-b w-fit text-main-gray cursor-pointer">
-              Change
-            </p>
           </div>
           <p className="font-bold">
             {formData.planType === "monthly"

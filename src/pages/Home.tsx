@@ -66,6 +66,20 @@ const Home = () => {
     [data, searchParams]
   );
 
+  let searchResult = (
+    <div className="flex justify-center py-10 items-center">
+      No results to this search
+    </div>
+  );
+  if (filteredData.length > 0) {
+    searchResult = (
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+        {filteredData.map((job: Job) => (
+          <JobCard key={job.id} job={job} />
+        ))}
+      </ul>
+    );
+  }
   return (
     <Layout>
       <SearchBar
@@ -73,11 +87,7 @@ const Home = () => {
         isModalOpened={isModalOpened}
         setIsModalOpened={setIsModalOpened}
       />
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
-        {filteredData.map((job: Job) => (
-          <JobCard key={job.id} job={job} />
-        ))}
-      </ul>
+      {searchResult}
       <div className="pb-10">
         {filteredData.length >= offset + 9 && (
           <button

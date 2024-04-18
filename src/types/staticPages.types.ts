@@ -1,5 +1,3 @@
-import { Dispatch, FormEventHandler } from "react";
-
 export type Job = {
   id: number;
   company: string;
@@ -20,9 +18,4 @@ export type Job = {
     content: string;
     items: string[];
   };
-};
-export type SearchProps = {
-  handleSubmit: FormEventHandler;
-  isModalOpened: boolean;
-  setIsModalOpened: Dispatch<React.SetStateAction<boolean>>;
 };
