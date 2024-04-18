@@ -16,12 +16,14 @@ const Details = () => {
   return (
     <>
       <Layout>
-        <JobTitleContainerBody>
-          <JobTitleCard job={job} />
-          <JobTitleDescriptions job={job} />
-        </JobTitleContainerBody>
+        <div className="mx-8 md:mx-12 lg:mx-[10%]">
+          <JobTitleContainerBody>
+            <JobTitleCard job={job} />
+            <JobTitleDescriptions job={job} />
+          </JobTitleContainerBody>
+        </div>
+        <JobTitleFooter job={job} />
       </Layout>
-      <JobTitleFooter job={job} />
     </>
   );
 };

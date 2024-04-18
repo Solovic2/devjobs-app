@@ -49,9 +49,7 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
                   ? `$${selectObject.monthlyPrice}/mo`
                   : `$${selectObject.yearlyPrice}/yr`}
               </p>
-              {planType === "yearly" && (
-                <p className="text-main-gray">2 months free</p>
-              )}
+              <p className='text-main-gray h-5'>{planType === "yearly" && '2 months free'}</p>
             </div>
           </li>
         ))}

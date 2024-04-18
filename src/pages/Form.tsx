@@ -8,6 +8,7 @@ import FormStepper from "../components/form/FormStepper";
 import { FormData } from "../types/form.types";
 import { initialData } from "../constants";
 import { useNavigate } from "react-router-dom";
+import Layout from "../components/ui/Layout";
 
 const Form = () => {
   const [data, setData] = useState(initialData);
@@ -62,47 +63,48 @@ const Form = () => {
   }, [isSubmitted]);
 
   return (
-    <div className="w-full max-w-[1200px] lg:bg-white lg:dark:bg-secondary-dark lg:mx-auto h-[100dvh] bg-form-topBar lg:bg-none bg-no-repeat bg-contain lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
-      <FormStepper goTo={goTo} index={currentStepIndex} />
-      {isSubmitted ? (
-        <div className="flex flex-col items-center gap-5 mx-5 px-4 lg:px-20 py-16 text-center bg-white  dark:bg-secondary-dark rounded-xl  lg:basis-2/3">
-          <div className="w-16">
-            <img src="/assets/form/icon-thank-you.svg" alt="Thank you!" />
+    <Layout>
+      <div className="h-[93dvh] md:h-[87dvh] w-full max-w-[1200px] -mt-20 lg:mt-0 lg:bg-white rounded-xl lg:dark:bg-secondary-dark lg:mx-auto  lg:bg-none bg-no-repeat bg-contain lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
+        <FormStepper goTo={goTo} index={currentStepIndex} />
+        {isSubmitted ? (
+          <div className="flex flex-col items-center gap-5 mx-5 px-4 lg:px-20 py-16 text-center bg-white  dark:bg-secondary-dark rounded-xl  lg:basis-2/3">
+            <div className="w-16">
+              <img src="/assets/form/icon-thank-you.svg" alt="Thank you!" />
+            </div>
+            <h1 className="text-2xl font-bold">Thank you!</h1>
+            <p className="text-main-gray">
+              Thanks for confirming your subscription! We hope you have fun
+              using our platform. If you ever need support, please feel free to
+              email us at support@devjobs.com.
+            </p>
           </div>
-          <h1 className="text-2xl font-bold">Thank you!</h1>
-          <p className="text-main-gray">
-            Thanks for confirming your subscription! We hope you have fun using
-            our platform. If you ever need support, please feel free to email us
-            at support@devjobs.com.
-          </p>
-        </div>
-      ) : (
-        <form
-          onSubmit={handleSubmit}
-          id="form"
-          className="relative w-full lg:px-14 lg:py-8 flex flex-col items-center lg:basis-2/3 text-sky-900 dark:text-white"
-        >
-          {step}
-          <div
-            className={`w-full p-4 lg:p-0 lg:px-20 absolute bottom-0 font-semibold bg-white dark:bg-secondary-dark flex ${
-              isFirstStep ? "justify-end" : "justify-between"
-            }`}
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="relative w-full h-[90dvh] md:h-[82dvh] lg:px-14 lg:py-8 flex flex-col items-center lg:basis-2/3 text-sky-900 dark:text-white"
           >
-            {!isFirstStep && (
-              <button type="button" className="text-main-gray" onClick={back}>
-                Go Back
-              </button>
-            )}
-            <button
-              type="submit"
-              className="bg-sky-900 dark:bg-white text-white dark:text-main-dark py-2 px-3 rounded"
+            {step}
+            <div
+              className={`w-full p-4 lg:p-0 lg:px-20 absolute bottom-0 font-semibold flex ${
+                isFirstStep ? "justify-end" : "justify-between"
+              }`}
             >
-              {isLastStep ? "Confirm" : "Next Step"}
-            </button>
-          </div>
-        </form>
-      )}
-    </div>
+              {!isFirstStep && (
+                <button type="button" className="text-main-gray" onClick={back}>
+                  Go Back
+                </button>
+              )}
+              <button
+                type="submit"
+                className="bg-sky-900 dark:bg-white text-white dark:text-main-dark py-2 px-3 rounded"
+              >
+                {isLastStep ? "Confirm" : "Next Step"}
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </Layout>
   );
 };
 export default Form;

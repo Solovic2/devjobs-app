@@ -1,5 +1,4 @@
 import { formSteps } from "../../constants";
-import { useMultiStepForm } from "../../hooks/useMultiStepForm";
 
 type FormStepperProps = {
   index: number;
@@ -10,7 +9,7 @@ const FormStepper = ({ index, goTo }: FormStepperProps) => {
     goTo(index);
   };
   return (
-    <div className="h-24 lg:h-full text-white flex lg:flex-col lg:gap-6 lg:p-16 lg:basis-1/3 lg:bg-form-sidebar bg-no-repeat bg-cover lg:bg-[length:100%_100%]">
+    <div className="h-24 lg:h-full text-white flex lg:flex-col lg:gap-6 lg:p-16 lg:basis-1/3 lg:bg-form-sidebar bg-no-repeat bg-cover lg:bg-[length:auto_100%]">
       {formSteps.map((element) => (
         <div
           key={element.index}

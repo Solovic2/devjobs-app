@@ -82,21 +82,23 @@ const Home = () => {
   }
   return (
     <Layout>
-      <SearchBar
-        handleSubmit={handleSubmit}
-        isModalOpened={isModalOpened}
-        setIsModalOpened={setIsModalOpened}
-      />
-      {searchResult}
-      <div className="pb-10">
-        {filteredData.length >= offset + 9 && (
-          <button
-            className="flex justify-center mx-auto mt-10 text-white px-8 py-3 rounded-md bg-main-violet hover:bg-light-violet "
-            onClick={handleClick}
-          >
-            Load More
-          </button>
-        )}
+      <div className="mx-8 md:mx-12 lg:mx-[10%]">
+        <SearchBar
+          handleSubmit={handleSubmit}
+          isModalOpened={isModalOpened}
+          setIsModalOpened={setIsModalOpened}
+        />
+        {searchResult}
+        <div className="pb-10">
+          {filteredData.length >= offset + 9 && (
+            <button
+              className="flex justify-center mx-auto mt-10 text-white px-8 py-3 rounded-md bg-main-violet hover:bg-light-violet "
+              onClick={handleClick}
+            >
+              Load More
+            </button>
+          )}
+        </div>
       </div>
     </Layout>
   );
