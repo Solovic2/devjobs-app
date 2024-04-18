@@ -15,6 +15,7 @@ import { Job } from "../types/staticPages.types";
 const Home = () => {
   const [offset, setOffset] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
 
   const handleClick: MouseEventHandler = () => {
     setOffset((prev) => prev + 3);
@@ -30,6 +31,7 @@ const Home = () => {
     if (formData.location) newSearchParams.location = formData.location;
     if (formData.fullTime) newSearchParams.fullTime = formData.fullTime;
     setSearchParams(newSearchParams, { replace: true });
+    setIsModalOpened(false);
   };
 
   const data = useMemo<Job[]>(
@@ -66,8 +68,12 @@ const Home = () => {
 
   return (
     <Layout>
-      <SearchBar handleSubmit={handleSubmit} />
-      <ul className="grid grid-cols-3 gap-6 mt-16">
+      <SearchBar
+        handleSubmit={handleSubmit}
+        isModalOpened={isModalOpened}
+        setIsModalOpened={setIsModalOpened}
+      />
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
         {filteredData.map((job: Job) => (
           <JobCard key={job.id} job={job} />
         ))}

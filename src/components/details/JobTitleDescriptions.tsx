@@ -1,5 +1,5 @@
+import { Job } from "../../types/staticPages.types";
 import ApplyButtonComponent from "./ApplyButtonComponent";
-import { Job } from "../../pages/Home";
 
 const JobTitleDescriptions = ({ job }: { job: Job }) => {
   return (
@@ -14,7 +14,7 @@ const JobTitleDescriptions = ({ job }: { job: Job }) => {
           <h1 className="text-[22px] font-bold mt-5">{job.position}</h1>
           <p className="my-5 text-main-violet font-bold">{job.location}</p>
         </div>
-        <div className="md:w-[18%] lg:w-fit">
+        <div className="">
           <ApplyButtonComponent id={job.id.toString()} />
         </div>
       </div>

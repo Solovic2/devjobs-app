@@ -1,4 +1,4 @@
-import { Job } from "../../pages/Home";
+import { Job } from "../../types/staticPages.types";
 
 const JobTitleCard = ({ job }: { job: Job }) => {
   return (
