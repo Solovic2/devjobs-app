@@ -69,17 +69,10 @@ const Form = () => {
     } else {
       next();
       // Set Finished Steps
-      data.finishedSteps[currentStepIndex] = true;
-      const finishedSteps = data.finishedSteps[currentStepIndex];
-      const updateFinishedSteps = data.finishedSteps.map((item, index) => {
-        if (index === currentStepIndex) {
-          return finishedSteps;
-        } else {
-          return item;
-        }
-      });
+      const updatedFinishedSteps = [...data.finishedSteps];
+      updatedFinishedSteps[currentStepIndex] = true;
       updateFields({
-        finishedSteps: updateFinishedSteps,
+        finishedSteps: updatedFinishedSteps,
       });
     }
   };

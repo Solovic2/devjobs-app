@@ -7,7 +7,7 @@ type FormStepperProps = {
 };
 const FormStepper = ({ finishedSteps, index, goTo }: FormStepperProps) => {
   const handleGoTo = (index: number) => {
-    if (finishedSteps[index]) {
+    if (finishedSteps[index] || finishedSteps[index - 1]) {
       goTo(index);
     }
   };
