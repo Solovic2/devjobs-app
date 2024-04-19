@@ -22,6 +22,8 @@ export type FormData = {
   planOption: PlanOption;
   planType: "monthly" | "yearly";
   addOnOptions: AddOnsOption[] | undefined;
+  finishedSteps: boolean[];
+
   summary: string;
 };
 

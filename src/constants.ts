@@ -82,6 +82,7 @@ const initialData: FormData = {
   planOption: planOptions[0],
   planType: "monthly",
   addOnOptions: undefined,
+  finishedSteps: [false, false, false],
   summary: "",
 };
 

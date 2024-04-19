@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, Dispatch } from "react";
 import { FormWrapper } from "./FormWrapper";
 import { AddOnsOption } from "../../types/form.types";
 import { AddOnsOptions } from "../../constants";
@@ -6,30 +6,37 @@ import { AddOnsOptions } from "../../constants";
 type AddOnOption = {
   addOnOptions: AddOnsOption[] | undefined;
 };
-type PlanType = {
+type AddOnStatesType = {
   planType: "monthly" | "yearly";
+  selectedItems: AddOnsOption[];
+  setSelectedItems: Dispatch<React.SetStateAction<AddOnsOption[]>>;
 };
-export type AddOnsProps = PlanType & {
+export type AddOnsProps = AddOnStatesType & {
   updateFields: (fields: Partial<AddOnOption>) => void;
 };
 
-const AddOns = ({ planType, updateFields }: AddOnsProps) => {
-  const [selectedItems, setSelectedItems] = useState<AddOnsOption[]>([]);
-
+const AddOns = ({
+  planType,
+  selectedItems,
+  setSelectedItems,
+  updateFields,
+}: AddOnsProps) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value, checked } = e.target;
     const objectParsed: AddOnsOption = JSON.parse(value);
     const updatedItems = [...selectedItems, objectParsed];
     if (checked) {
       setSelectedItems(updatedItems);
+      updateFields({ addOnOptions: updatedItems });
     } else {
-      setSelectedItems((selectedItem) =>
-        selectedItem.filter(
+      setSelectedItems((selectedItem) => {
+        const item = selectedItem.filter(
           (element: AddOnsOption) => element.id !== objectParsed.id
-        )
-      );
+        );
+        updateFields({ addOnOptions: item });
+        return item;
+      });
     }
-    updateFields({ addOnOptions: updatedItems });
   };
 
   return (
@@ -53,6 +60,7 @@ const AddOns = ({ planType, updateFields }: AddOnsProps) => {
               type="checkbox"
               value={JSON.stringify(addOnsObject)}
               id={`${addOnsObject.id}-${addOnsObject.title}`}
+              defaultChecked={isChecked ? true : false}
               onChange={handleChange}
             />
             <label

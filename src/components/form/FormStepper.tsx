@@ -1,12 +1,15 @@
 import { formSteps } from "../../constants";
 
 type FormStepperProps = {
+  finishedSteps: boolean[];
   index: number;
   goTo: (index: number) => void;
 };
-const FormStepper = ({ index, goTo }: FormStepperProps) => {
+const FormStepper = ({ finishedSteps, index, goTo }: FormStepperProps) => {
   const handleGoTo = (index: number) => {
-    goTo(index);
+    if (finishedSteps[index]) {
+      goTo(index);
+    }
   };
   return (
     <div className="h-24 lg:h-full text-white flex lg:flex-col lg:gap-6 lg:p-16 lg:basis-1/3 lg:bg-form-sidebar bg-no-repeat bg-cover lg:bg-[length:auto_100%]">

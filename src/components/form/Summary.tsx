@@ -1,29 +1,45 @@
-import { useMemo, useState } from "react";
+import { Dispatch, useEffect, useMemo } from "react";
 import { AddOnsOption, FormData } from "../../types/form.types";
 import { FormWrapper } from "./FormWrapper";
 
-const Summary = (formData: FormData) => {
-  const [totalPrice, setTotalPrice] = useState<number>(0);
+type SummaryStateProps = {
+  totalPrice: number;
+  setTotalPrice: Dispatch<React.SetStateAction<number>>;
+};
+
+type SummaryProps = { formData: FormData } & SummaryStateProps;
+
+const Summary = ({ formData, totalPrice, setTotalPrice }: SummaryProps) => {
   const planPrices = (element: AddOnsOption): number => {
     return formData.planType === "monthly"
       ? parseInt(element.monthlyPrice!)
       : parseInt(element.yearlyPrice!);
   };
-  useMemo(
-    () =>
-      formData.planType === "monthly"
-        ? setTotalPrice(parseInt(formData.planOption.monthlyPrice!))
-        : setTotalPrice(parseInt(formData.planOption.yearlyPrice!)),
-    [formData.planType]
-  );
-  useMemo(
-    () =>
-      formData.addOnOptions?.forEach((element) =>
-        setTotalPrice((prev: number) => (prev += planPrices(element)))
-      ),
-    [formData.addOnOptions?.length]
-  );
 
+  // useMemo(
+  //   () =>
+  //     formData.planType === "monthly"
+  //       ? setTotalPrice(parseInt(formData.planOption.monthlyPrice!))
+  //       : setTotalPrice(parseInt(formData.planOption.yearlyPrice!)),
+  //   [formData.planType]
+  // );
+  // useMemo(
+  //   () =>
+  //     formData.addOnOptions?.forEach((element) =>
+  //       setTotalPrice((prev: number) => (prev += planPrices(element)))
+  //     ),
+  //   [formData.addOnOptions?.length]
+  // );
+
+  useEffect(() => {
+    formData.planType === "monthly"
+      ? setTotalPrice(parseInt(formData.planOption.monthlyPrice!))
+      : setTotalPrice(parseInt(formData.planOption.yearlyPrice!));
+
+    formData.addOnOptions?.forEach((element) =>
+      setTotalPrice((prev: number) => (prev += planPrices(element)))
+    );
+  }, [formData.planType, formData.addOnOptions]);
   return (
     <FormWrapper
       title="Finishing up"

@@ -5,14 +5,19 @@ import Summary from "../components/form/Summary";
 import YourInfo from "../components/form/YourInfo";
 import { useMultiStepForm } from "../hooks/useMultiStepForm";
 import FormStepper from "../components/form/FormStepper";
-import { FormData } from "../types/form.types";
-import { initialData } from "../constants";
+import { AddOnsOption, FormData, PlanOption } from "../types/form.types";
+import { initialData, planOptions } from "../constants";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/ui/Layout";
 
 const Form = () => {
   const [data, setData] = useState(initialData);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [planType, setPlanType] = useState<"monthly" | "yearly">("monthly");
+  const [selectedPlan, setSelectedPlan] = useState<PlanOption>(planOptions[0]);
+  const [selectedItems, setSelectedItems] = useState<AddOnsOption[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
   const navigate = useNavigate();
 
   const {
@@ -31,9 +36,24 @@ const Form = () => {
       phone={data.phone}
       updateFields={updateFields}
     />,
-    <SelectPlan updateFields={updateFields} />,
-    <AddOns planType={data.planType} updateFields={updateFields} />,
-    <Summary {...data} />,
+    <SelectPlan
+      planType={planType}
+      setPlanType={setPlanType}
+      selectedPlan={selectedPlan}
+      setSelectedPlan={setSelectedPlan}
+      updateFields={updateFields}
+    />,
+    <AddOns
+      selectedItems={selectedItems}
+      setSelectedItems={setSelectedItems}
+      planType={data.planType}
+      updateFields={updateFields}
+    />,
+    <Summary
+      totalPrice={totalPrice}
+      setTotalPrice={setTotalPrice}
+      formData={data}
+    />,
   ]);
 
   function updateFields(fields: Partial<FormData>) {
@@ -48,6 +68,19 @@ const Form = () => {
       setIsSubmitted(true);
     } else {
       next();
+      // Set Finished Steps
+      data.finishedSteps[currentStepIndex] = true;
+      const finishedSteps = data.finishedSteps[currentStepIndex];
+      const updateFinishedSteps = data.finishedSteps.map((item, index) => {
+        if (index === currentStepIndex) {
+          return finishedSteps;
+        } else {
+          return item;
+        }
+      });
+      updateFields({
+        finishedSteps: updateFinishedSteps,
+      });
     }
   };
 
@@ -65,7 +98,11 @@ const Form = () => {
   return (
     <Layout>
       <div className="h-[93dvh] md:h-[87dvh] w-full max-w-[1200px] -mt-20 lg:mt-0 lg:bg-white rounded-xl lg:dark:bg-secondary-dark lg:mx-auto  lg:bg-none bg-no-repeat bg-contain lg:p-5 flex flex-col lg:flex-row items-center lg:justify-center ">
-        <FormStepper goTo={goTo} index={currentStepIndex} />
+        <FormStepper
+          goTo={goTo}
+          finishedSteps={data.finishedSteps}
+          index={currentStepIndex}
+        />
         {isSubmitted ? (
           <div className="flex flex-col items-center gap-5 mx-5 px-4 lg:px-20 py-16 text-center bg-white  dark:bg-secondary-dark rounded-xl  lg:basis-2/3">
             <div className="w-16">

@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from "react";
+import { Dispatch, MouseEventHandler } from "react";
 import { FormWrapper } from "./FormWrapper";
 import { PlanOption } from "../../types/form.types";
 import { planOptions } from "../../constants";
@@ -7,14 +7,23 @@ type Plan = {
   planOption: PlanOption;
   planType: "monthly" | "yearly";
 };
-export type SelectPlanProps = {
+type PlanStatesProps = {
+  planType: "monthly" | "yearly";
+  setPlanType: Dispatch<React.SetStateAction<"monthly" | "yearly">>;
+  selectedPlan: PlanOption;
+  setSelectedPlan: Dispatch<React.SetStateAction<PlanOption>>;
+};
+export type SelectPlanProps = PlanStatesProps & {
   updateFields: (fields: Partial<Plan>) => void;
 };
 
-const SelectPlan = ({ updateFields }: SelectPlanProps) => {
-  const [planType, setPlanType] = useState<"monthly" | "yearly">("monthly");
-  const [selectedPlan, setSelectedPlan] = useState<PlanOption>(planOptions[0]);
-
+const SelectPlan = ({
+  planType,
+  setPlanType,
+  selectedPlan,
+  setSelectedPlan,
+  updateFields,
+}: SelectPlanProps) => {
   const handleToggle: MouseEventHandler = () => {
     setPlanType((prev) => (prev === "monthly" ? "yearly" : "monthly"));
   };
@@ -49,7 +58,9 @@ const SelectPlan = ({ updateFields }: SelectPlanProps) => {
                   ? `$${selectObject.monthlyPrice}/mo`
                   : `$${selectObject.yearlyPrice}/yr`}
               </p>
-              <p className='text-main-gray h-5'>{planType === "yearly" && '2 months free'}</p>
+              <p className="text-main-gray h-5">
+                {planType === "yearly" && "2 months free"}
+              </p>
             </div>
           </li>
         ))}
